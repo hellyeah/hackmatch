@@ -17,6 +17,7 @@
 
 	<link rel="stylesheet" href="css/todo.css">
 	<link rel="stylesheet" href="css/frames.css">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 
 	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
 		<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
@@ -49,7 +50,7 @@
 				$('#windowTitleDialog').bind('show', function () {
 					document.getElementById ("xlInput").value = document.title;
 					});
-				$('#windowTitleDialog').modal('show');
+				//$('#windowTitleDialog').modal('show');
 				});
 			function closeDialog () {
 				$('#windowTitleDialog').modal('hide'); 
@@ -60,6 +61,7 @@
 				};
 
 		</script>
+		<meta name="viewport" content="width=device-width, user-scalable=false;">
 </head>
 </body>
 <!--
@@ -95,13 +97,12 @@
 				<form class="form-horizontal">
 				<div class="modal-body">
 					<div class="divDialogElements">
-
-							<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" ng-model-instant placeholder="url">
-							<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" ng-model-instant placeholder="email">
+							<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" ng-model-instant placeholder={{siteUrl}}>
+							<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" ng-model-instant placeholder={{siteEmail}}>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button class="btn" onclick="closeDialog ();" ng-click="addSite()">Add</button> 
+					<button class="pure-button pure-button-primary signupd" onclick="closeDialog ();" ng-click="addSite()">Sign up for Hackmatch Beta</button> 
 					</form>
 				</div>
 			</div>
@@ -120,18 +121,19 @@
 			{{siteUrl}}  {{siteEmail}} 
 		</form>
 -->
+		<div class="blah">
+			<button class="pure-button" ng-click="nextSite()">
+				Next Site
+			</button>
 
-		<button class="btn-large" ng-click="nextSite()">
-			Next Site
-		</button>
-
-		<button class="btn-large" ng-click="interested()">
-			I'm Interested
-		</button>
+			<button class="pure-button pure-button-primary" ng-click="expressedInterest()">
+				I'm Interested
+			</button>
+		</div>
 
 		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
 		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>-->
-		<iframe class="frameOne website-frame" src={{getCurrentSite().url}}></iframe>
+		<iframe class="frameOne website-frame" ng-model-instant src={{getCurrentSite().url}}></iframe>
 
 <!--
 		<iframe class="frameOne website-frame" ng-hide={{myValue}} src={{getCurrentSite().url}}></iframe>
@@ -144,6 +146,15 @@
 		<iframe class="frameTwo" ng-model-instant src={{iframeTwo}}></iframe>
 -->
 	</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-28523753-5', 'hackmatch.com');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

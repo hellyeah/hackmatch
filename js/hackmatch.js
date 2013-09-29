@@ -9,6 +9,8 @@ function hackmatch($scope, angularFire) {
     //Initializing variables
     $scope.sites = [];
     $scope.user = {email: 'blah', url: 'blah'};
+    $scope.siteUrl = 'url';
+    $scope.siteEmail = 'email'
     $scope.iframeOne = "http://hackny.org/a/"
     $scope.iframeTwo = "http://www.mongodb.com/"
     //[BIND MODEL HERE]
@@ -43,7 +45,21 @@ function hackmatch($scope, angularFire) {
 
 
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
+	$scope.expressedInterest = function () {
+		if ($scope.siteEmail=="email") {
+			$('#windowTitleDialog').modal('show');
+		}
+		else {
+			$scope.interested();
+		}
+	}
+
 	$scope.interested = function () {
+		console.log($scope.siteEmail);
+		console.log($scope.siteUrl);
+		//if ($scope.siteEmail=="email") {
+		//	$('#windowTitleDialog').modal('show');
+		//}
 		//set bool to true if interested or false if not interested...maybe just append to the user parse data the email of the company
 		//userEmail
 		//site.save(null, {
@@ -60,7 +76,7 @@ function hackmatch($scope, angularFire) {
 		{
 			success: function(object) {
 				console.log('interest');
-				$scope.nextSite();
+				//$scope.nextSite();
 			},
 			error: function(model, error) {
 
@@ -76,9 +92,11 @@ function hackmatch($scope, angularFire) {
 	$scope.addSite = function () {
 		var Site = Parse.Object.extend("testSites");
 		var site = new Site();
+		$scope.user.email = $scope.siteEmail;
+		$scope.user.url = $scope.siteUrl;
 		//$scope.toggle();
 		//**Force this upon arrival to the site
-		$scope.user = {email: $scope.siteEmail, url: $scope.siteUrl};
+		//$scope.user = {email: $scope.siteEmail, url: $scope.siteUrl};
 		//**VALIDATION
 		//Checkboxes for hackathons
 		//$scope.myDataRef = new Firebase('https://hackmatch.firebaseIO.com/');
@@ -92,8 +110,9 @@ function hackmatch($scope, angularFire) {
             //$(".success").show();
             //alert('Success!');
             //$('#dialog-form').toggle();
-            $scope.siteUrl = "";
-			$scope.siteEmail = "";
+            //$scope.siteUrl = "";
+			//$scope.siteEmail = "";
+			$scope.interested();
           },
           error: function(model, error) {
             //$(".error").show();
@@ -101,8 +120,8 @@ function hackmatch($scope, angularFire) {
         });
 
 
-		$scope.siteUrl = "";
-		$scope.siteEmail = "";
+		//$scope.siteUrl = "";
+		//$scope.siteEmail = "";
 	}
 
 	$scope.iframeSite = function () {
