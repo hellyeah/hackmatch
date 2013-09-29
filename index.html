@@ -12,7 +12,10 @@
 	<script type="text/javascript" src="js/todo.js"></script>
 	<script type="text/javascript" src="js/hackmatch.js"></script>
 
+	<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+
 	<link rel="stylesheet" href="css/todo.css">
+	<link rel="stylesheet" href="css/frames.css">
 </head>
 </body>
 <!--
@@ -39,7 +42,7 @@
 	</div>
 -->
 
-	<div ng-controller="hackmatch"
+	<div ng-controller="hackmatch">
 		<!--save new url and email-->
 		<form class="form-horizontal">
 			<input type="text" ng-model="siteUrl" ng-model-instant placeholder="url">
@@ -56,12 +59,17 @@
 			I'm Interested
 		</button>
 
-		<button class="btn-large" ng-click="getSites()">
-			Get Sites
-		</button>
+		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
+		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>-->
 
-		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>-->
-		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>
+		<iframe class="frameOne website-frame" src={{getCurrentSite().url}}></iframe>
+<!--
+		<iframe class="frameOne" src={{getIframeOne()}}></iframe>
+		<iframe class="frameTwo" src={{getIframeTwo()}}></iframe>
+
+		<iframe class="frameOne" ng-model-instant src={{iframeOne}}></iframe>
+		<iframe class="frameTwo" ng-model-instant src={{iframeTwo}}></iframe>
+-->
 	</div>
 
 </body>

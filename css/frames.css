@@ -1,0 +1,42 @@
+.frameOne {
+	position: absolute;
+	top: 20px;
+	z-index: 1000;
+}
+
+.frameTwo {
+	position: absolute;
+	top: 20px;
+	z-index: 999;
+}
+
+.website-frame {
+    position: relative;
+    overflow: hidden;
+    /*top: 40px;*/
+    width: 100%;
+    height: 1000px; 
+    margin: 0;
+    padding: 0;
+}
+
+iframe {
+    /*position: absolute;*/
+    width: 100%; 
+    height: 100%;
+    /*overflow: hidden;*/
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #eee;
+    text-align: center;
+    /*padding: 0 25px;*/
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*overflow: hidden;*/
+}

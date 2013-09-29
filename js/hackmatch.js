@@ -4,11 +4,12 @@ function hackmatch($scope, angularFire) {
     var ref = new Firebase("https://hackmatch.firebaseio.com/");
 
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
-	var Site = Parse.Object.extend("testSites");
-	var site = new Site();
     
+    //Initializing variables
     $scope.sites = [];
     $scope.user = {email: 'blah', url: 'blah'};
+    $scope.iframeOne = "http://hackny.org/a/"
+    $scope.iframeTwo = "http://www.mongodb.com/"
     //[BIND MODEL HERE]
     angularFire(ref, $scope, "sites");
 
@@ -27,10 +28,15 @@ function hackmatch($scope, angularFire) {
 	$scope.nextSite = function () {
 		//console.log($scope.sites);
 		$scope.currentSite++;
+		$scope.toggle();
 	}
 
 	$scope.getCurrentSite = function () {
 		return $scope.getSites()[$scope.currentSite];
+	};
+
+	$scope.getNextSite = function () {
+		return $scope.getSites()[$scope.currentSite + 1];
 	};
 
 
@@ -66,6 +72,9 @@ function hackmatch($scope, angularFire) {
 
 	//add to firebase for hackers sites
 	$scope.addSite = function () {
+		var Site = Parse.Object.extend("testSites");
+		var site = new Site();
+		//$scope.toggle();
 		//**Force this upon arrival to the site
 		$scope.user = {email: $scope.siteEmail, url: $scope.siteUrl};
 		//**VALIDATION
@@ -93,6 +102,54 @@ function hackmatch($scope, angularFire) {
 		$scope.siteUrl = "";
 		$scope.siteEmail = "";
 	}
+
+	$scope.iframeSite = function () {
+		return $scope.getCurrentSite().url;
+	}
+
+	$scope.currentFrame = 0;
+/*
+	$scope.toggle = function () {
+		if ($scope.currentFrame) {
+			$scope.currentFrame = 0;
+			$scope.iframeOne = $scope.getCurrentSite().url;
+			$scope.iframeTwo = $scope.getNextSite().url;
+		}
+		else {
+			$scope.currentFrame = 1;
+			$scope.iframeTwo = $scope.getCurrentSite().url;
+			$scope.iframeOne = $scope.getNextSite().url;
+		}
+	}
+*/
+
+	$scope.toggle = function () {
+		if ($scope.currentFrame) {
+			$scope.currentFrame = 0;
+		}
+		else {
+			$scope.currentFrame = 1;
+		}
+	}
+
+	$scope.getFrameOne = function () {
+		if (!$scope.currentFrame) {
+			return $scope.getCurrentSite().url;
+		}
+		else {
+			return $scope.getNextSite().url;
+		}
+	}
+
+	$scope.getFrameTwo = function () {
+		if ($scope.currentFrame) {
+			return $scope.getCurrentSite().url;
+		}
+		else {
+			return $scope.getNextSite().url;
+		}
+	}
+
 
 /*
 	$scope.loadSites = function () {
@@ -141,3 +198,5 @@ function hackmatch($scope, angularFire) {
 */
 
 }
+
+$('.website-frame').css('height', $(window).height()+'px');
