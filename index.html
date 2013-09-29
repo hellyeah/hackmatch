@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="css/todo.css">
 </head>
 </body>
+<!--
 	<input type="text" ng-model="name">
 	<h2>Hello {{name}}!</h2>
 
@@ -36,6 +37,7 @@
 			Clear Completed
 		</button>
 	</div>
+-->
 
 	<div ng-controller="hackmatch"
 		<!--save new url and email-->
@@ -50,7 +52,15 @@
 			Next Site
 		</button>
 
-		<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
+		<button class="btn-large" ng-click="interested()">
+			I'm Interested
+		</button>
+
+		<button class="btn-large" ng-click="getSites()">
+			Get Sites
+		</button>
+
+		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>-->
 		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>
 	</div>
 
