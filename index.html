@@ -1,9 +1,16 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="HackMatch">
 <head>
-	<script src="js/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
 	<script src="js/underscore-min.js"></script>
+	<!-- inclue Firebase JS SDK-->
+	<script src='https://cdn.firebase.com/v0/firebase.js'></script>
+	<script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script> 
+	<!-- inclue Parse JS SDK-->
+	<script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+
 	<script type="text/javascript" src="js/todo.js"></script>
+	<script type="text/javascript" src="js/hackmatch.js"></script>
 
 	<link rel="stylesheet" href="css/todo.css">
 </head>
@@ -29,5 +36,23 @@
 			Clear Completed
 		</button>
 	</div>
+
+	<div ng-controller="hackmatch"
+		<!--save new url and email-->
+		<form class="form-horizontal">
+			<input type="text" ng-model="siteUrl" ng-model-instant placeholder="url">
+			<input type="text" ng-model="siteEmail" ng-model-instant placeholder="email">
+			<button class="btn" ng-click="addSite()">Add</button> 
+			{{siteUrl}}  {{siteEmail}} 
+		</form>
+
+		<button class="btn-large" ng-click="nextSite()">
+			Next Site
+		</button>
+
+		<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
+		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>
+	</div>
+
 </body>
 </html>
