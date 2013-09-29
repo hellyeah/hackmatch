@@ -1,13 +1,14 @@
 <!doctype html>
 <html ng-app="HackMatch">
 <head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
+	<script src="js/angular.min.js"></script>
 	<script src="js/underscore-min.js"></script>
 	<!-- inclue Firebase JS SDK-->
 	<script src='https://cdn.firebase.com/v0/firebase.js'></script>
 	<script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script> 
 	<!-- inclue Parse JS SDK-->
 	<script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+	<script text="text/javascript" src="js/ui-utils/modules/keypress/keypress.js"></script>
 
 	<script type="text/javascript" src="js/todo.js"></script>
 	<script type="text/javascript" src="js/hackmatch.js"></script>
@@ -16,6 +17,49 @@
 
 	<link rel="stylesheet" href="css/todo.css">
 	<link rel="stylesheet" href="css/frames.css">
+
+	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
+		<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
+		<style>
+			.divDemoBody  {
+				width: 60%;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 100px;
+				}
+			.divDemoBody p {
+				font-size: 18px;
+				line-height: 140%;
+				padding-top: 12px;
+				}
+			.divDialogElements input {
+				font-size: 18px;
+				padding: 3px; 
+				height: 32px; 
+				width: 500px; 
+				}
+			.divButton {
+				padding-top: 12px;
+				}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$('#windowTitleDialog').bind('show', function () {
+					document.getElementById ("xlInput").value = document.title;
+					});
+				$('#windowTitleDialog').modal('show');
+				});
+			function closeDialog () {
+				$('#windowTitleDialog').modal('hide'); 
+				};
+			function okClicked () {
+				document.title = document.getElementById ("xlInput").value;
+				closeDialog ();
+				};
+
+		</script>
 </head>
 </body>
 <!--
@@ -43,13 +87,39 @@
 -->
 
 	<div ng-controller="hackmatch">
+			<div id="windowTitleDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3>Please enter your personal website or github and email.</h3>
+				</div>
+				<form class="form-horizontal">
+				<div class="modal-body">
+					<div class="divDialogElements">
+
+							<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" ng-model-instant placeholder="url">
+							<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" ng-model-instant placeholder="email">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" onclick="closeDialog ();" ng-click="addSite()">Add</button> 
+					</form>
+				</div>
+			</div>
+		<!--
+			<div class="divButtons">
+				<a data-toggle="modal" href="#windowTitleDialog" class="btn btn-primary btn-large">Sign Up</a>
+			</div>
+		-->
+
 		<!--save new url and email-->
+<!--
 		<form class="form-horizontal">
 			<input type="text" ng-model="siteUrl" ng-model-instant placeholder="url">
 			<input type="text" ng-model="siteEmail" ng-model-instant placeholder="email">
 			<button class="btn" ng-click="addSite()">Add</button> 
 			{{siteUrl}}  {{siteEmail}} 
 		</form>
+-->
 
 		<button class="btn-large" ng-click="nextSite()">
 			Next Site
@@ -61,9 +131,12 @@
 
 		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
 		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>-->
-
 		<iframe class="frameOne website-frame" src={{getCurrentSite().url}}></iframe>
+
 <!--
+		<iframe class="frameOne website-frame" ng-hide={{myValue}} src={{getCurrentSite().url}}></iframe>
+		<iframe class="frameOne website-frame" ng-hide={{yourValue}} src="http://rjvir.com"></iframe>
+
 		<iframe class="frameOne" src={{getIframeOne()}}></iframe>
 		<iframe class="frameTwo" src={{getIframeTwo()}}></iframe>
 

@@ -1,4 +1,5 @@
-var app = angular.module("HackMatch", ["firebase"]);
+var app = angular.module("HackMatch", ["firebase", "ui.keypress"]);
+//angular.module('ui.keypress',[]).
 
 function hackmatch($scope, angularFire) {
     var ref = new Firebase("https://hackmatch.firebaseio.com/");
@@ -12,6 +13,7 @@ function hackmatch($scope, angularFire) {
     $scope.iframeTwo = "http://www.mongodb.com/"
     //[BIND MODEL HERE]
     angularFire(ref, $scope, "sites");
+
 
 
 	$scope.currentSite = 0;
@@ -123,6 +125,14 @@ function hackmatch($scope, angularFire) {
 	}
 */
 
+	$scope.myValue = function () {
+		return ($scope.currentSite) % 2;
+	}
+
+	$scope.yourValue = function () {
+		return !$scope.myValue;
+	}
+
 	$scope.toggle = function () {
 		if ($scope.currentFrame) {
 			$scope.currentFrame = 0;
@@ -199,4 +209,4 @@ function hackmatch($scope, angularFire) {
 
 }
 
-$('.website-frame').css('height', $(window).height()+'px');
+//$('.website-frame').css('height', $(window).height()+'px');
