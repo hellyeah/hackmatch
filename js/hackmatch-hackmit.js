@@ -124,6 +124,7 @@ function hackmatch($scope, angularFire) {
 		$scope.currentSite++;
 		if ($scope.currentSite >= $scope.sites.length) {
 			angularFire(ref, $scope, "sites");
+			$scope.currentSite = 0;
 		}
 		//$scope.toggle();
 	}
