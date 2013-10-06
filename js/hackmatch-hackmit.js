@@ -49,7 +49,7 @@ function hackmatch($scope, angularFire) {
    	$scope.loadSites = function () {
 		var TestSites = Parse.Object.extend("hackerSites");
 		var query = new Parse.Query(TestSites);
-		query.containsAll("tags", [QueryString]);
+		//query.containsAll("tags", [QueryString]);
 		  query.find({
 		    success: function(results) {
 		      //alert("Successfully retrieved " + results.length + " sites.");
