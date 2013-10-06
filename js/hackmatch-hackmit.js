@@ -14,7 +14,7 @@ function hackmatch($scope, angularFire) {
     $scope.iframeOne = "http://hackny.org/a/"
     $scope.iframeTwo = "http://www.mongodb.com/"
     //[BIND MODEL HERE]
-    //angularFire(ref, $scope, "sites");
+    angularFire(ref, $scope, "sites");
 
    	$scope.loadSites = function () {
 		var TestSites = Parse.Object.extend("testSites");
@@ -24,7 +24,7 @@ function hackmatch($scope, angularFire) {
 		      //alert("Successfully retrieved " + results.length + " sites.");
 		      // Do something with the returned Parse.Object values
 		      $scope.sites = results;
-		      $scope.getCurrentSite();
+		      //$scope.getCurrentSite();
 		      //console.log($scope.sites);
 		      //console.log($scope.sites[1]);
 		      //for (var i = 0; i < results.length; i++) { 
