@@ -36,7 +36,7 @@ function hackmatch($scope, angularFire) {
 	      query_string[pair[0]].push(pair[1]);
 	    }
 	  } 
-	    return query_string;
+	    return _.toArray(query_string);
 	} ();
 
 	console.log(QueryString);
