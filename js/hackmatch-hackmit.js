@@ -21,6 +21,7 @@ function hackmatch($scope, angularFire) {
 	  // This function is anonymous, is executed immediately and 
 	  // the return value is assigned to QueryString!
 	  if (window.location.search) {
+	  	console.log('blah')
 		  var query_string = {};
 		  var query = window.location.search.substring(1);
 		  var vars = query.split("&");
@@ -45,7 +46,7 @@ function hackmatch($scope, angularFire) {
 	  }
 	} ();
 
-	console.log(QueryString);
+	//console.log(QueryString);
 
    	$scope.loadSites = function () {
 		var TestSites = Parse.Object.extend("hackerSites");
@@ -78,6 +79,7 @@ function hackmatch($scope, angularFire) {
 		var query = new Parse.Query(TestSites);
 		//query.containsAll("tags", [QueryString]);
 		if (QueryString) {
+			console.log('passed');
 			query.containsAll("tags", [QueryString]);
 		}
 		  query.find({
