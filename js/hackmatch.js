@@ -109,7 +109,8 @@ function hackmatch($scope, angularFire) {
 		interest.save({
 			contactEmail: $scope.user.email,
 			url: $scope.user.url,
-			interestingStartups: $scope.getCurrentSite().email
+			interestingStartups: $scope.getCurrentSite().email,
+			startupURL: $scope.getCurrentSite().url
 		},
 		{
 			success: function(object) {
