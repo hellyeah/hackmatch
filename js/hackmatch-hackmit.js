@@ -88,7 +88,7 @@ function hackmatch($scope, angularFire) {
 		      //console.log($scope.sites);
 		      //console.log($scope.sites[1]);
 		      for (var i = 0; i < results.length; i++) {
-		      	console.log(results[i].get('url'));
+		      	console.log(results[i].get('contactEmail'));
 		      	//$scope.sites.push(results[i]);
 		      	$scope.sites.push({url: results[i].get('url'), contactEmail: results[i].get('contactEmail')});
 
