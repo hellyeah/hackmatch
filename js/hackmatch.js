@@ -68,11 +68,20 @@ function hackmatch($scope, angularFire) {
 //	}
 
 	$scope.nextSite = function () {
-		//console.log($scope.sites);
-		$scope.currentSite++;
-		$scope.toggle();
+		console.log($scope.sites);
+		if ($scope.currentSite < $scope.sites.length-1) {
+			//angularFire(ref, $scope, "sites");
+			$scope.currentSite++;
+			//$scope.getCurrentSite();
+			//console.log($scope.getSites());
+			//$scope.nextSite();
+		}
+		else {
+			$scope.currentSite = 0;
+		}
+		//$scope.toggle();
 	}
-
+	
 	$scope.getCurrentSite = function () {
 		return $scope.getSites()[$scope.currentSite];
 	};
