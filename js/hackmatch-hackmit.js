@@ -26,6 +26,7 @@ function hackmatch($scope, angularFire) {
 		      // Do something with the returned Parse.Object values
 		      $scope.sites = results;
 		      console.log(results);
+		      console.log('blah');
 		      //$scope.getCurrentSite();
 		      //console.log($scope.sites);
 		      //console.log($scope.sites[1]);
