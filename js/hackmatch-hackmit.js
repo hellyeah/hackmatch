@@ -26,7 +26,7 @@ function hackmatch($scope, angularFire) {
 	  for (var i=0;i<vars.length;i++) {
 	    var pair = vars[i].split("=");
 	    	// If first entry with this name
-	    if (typeof query_string[pair[0]] === "undefined") {
+	    if (typeof query_string[pair[0]] === "") {
 	      query_string[pair[0]] = pair[1];
 	    	// If second entry with this name
 	    } else if (typeof query_string[pair[0]] === "string") {
