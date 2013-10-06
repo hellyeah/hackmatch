@@ -89,6 +89,7 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.getCurrentSite = function () {
+		console.log($scope.getSites()[$scope.currentSite])
 		return $scope.getSites()[$scope.currentSite];
 	};
 
