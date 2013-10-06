@@ -36,7 +36,7 @@ function hackmatch($scope, angularFire) {
 	      query_string[pair[0]].push(pair[1]);
 	    }
 	  } 
-	  if (query_string != undefined) {
+	  if (query_string) {
 	    return _.toArray(query_string);
 	  }
 	  else {
@@ -76,7 +76,7 @@ function hackmatch($scope, angularFire) {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
 		//query.containsAll("tags", [QueryString]);
-		query.containsAll("tags", [""]);
+		query.containsAll("tags", ["hackmit"]);
 		  query.find({
 		    success: function(results) {
 		      //alert("Successfully retrieved " + results.length + " sites.");
