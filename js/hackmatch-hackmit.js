@@ -40,6 +40,8 @@ function hackmatch($scope, angularFire) {
 		  });
 	}
 
+	$scope.loadSites();
+
 
 
 	$scope.currentSite = 0;
