@@ -47,8 +47,7 @@ function hackmatch($scope, angularFire) {
 	} ();
 
 	//console.log(QueryString);
-
-   	$scope.loadSites = function () {
+    $scope.loadSites = function () {
 		var TestSites = Parse.Object.extend("hackerSites");
 		var query = new Parse.Query(TestSites);
 		//query.containsAll("tags", [QueryString]);
@@ -74,43 +73,7 @@ function hackmatch($scope, angularFire) {
 		  });
 	}
 
-	$scope.loadStartupSites = function () {
-		var TestSites = Parse.Object.extend("sponsorSites");
-		var query = new Parse.Query(TestSites);
-		//query.containsAll("tags", [QueryString]);
-		if (QueryString) {
-			console.log('passed');
-			query.containsAll("tags", [QueryString]);
-		}
-		  query.find({
-		    success: function(results) {
-		      //alert("Successfully retrieved " + results.length + " sites.");
-		      // Do something with the returned Parse.Object values
-		      console.log('blah');
-		      //$scope.sites = results;
-		      //console.log($scope.sites);
-		      console.log(results);
-		      //$scope.getCurrentSite();
-		      //console.log($scope.sites);
-		      //console.log($scope.sites[1]);
-		      for (var i = 0; i < results.length; i++) {
-		      	console.log(results[i].get('contactEmail') + results[i].get('url'));
-		      	//$scope.sites.push(results[i]);
-		      	$scope.sites[i+1] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
-		      	$scope.getCurrentSite();
-		        //var sites[i] = results[i];
-		      }
-		        //$('iframe').attr("src", object.get('url'));
-		        //window.name = object.get('contactEmail');
-		      //}
-		    },
-		    error: function(error) {
-		      alert("Error: " + error.code + " " + error.message);
-		    }
-		  });
-	}
-
-	$scope.loadStartupSites();
+	$scope.loadSites();
 
 	$scope.currentSite = 0;
 
