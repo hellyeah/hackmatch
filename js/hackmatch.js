@@ -21,7 +21,7 @@ function hackmatch($scope, angularFire) {
 	$scope.loadStartupSites = function () {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
-		//query.containsAll("tags", [QueryString]);
+		query.containsAll("tags", ["hackmit"]);
 		//if (QueryString) {
 		//	console.log('passed');
 		//	query.containsAll("tags", [QueryString]);
