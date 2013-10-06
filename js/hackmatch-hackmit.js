@@ -92,7 +92,7 @@ function hackmatch($scope, angularFire) {
 		      for (var i = 0; i < results.length; i++) {
 		      	console.log(results[i].get('contactEmail') + results[i].get('url'));
 		      	//$scope.sites.push(results[i]);
-		      	$scope.sites[i] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
+		      	$scope.sites[i+1] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
 		      	$scope.getCurrentSite();
 		        //var sites[i] = results[i];
 		      }
@@ -122,7 +122,7 @@ function hackmatch($scope, angularFire) {
 	$scope.nextSite = function () {
 		console.log($scope.sites);
 		$scope.currentSite++;
-		if ($scope.currentSite >= $scope.sites.length) {
+		if ($scope.currentSite > $scope.sites.length) {
 			angularFire(ref, $scope, "sites");
 			$scope.currentSite = 0;
 		}
