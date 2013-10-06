@@ -123,9 +123,9 @@ function hackmatch($scope, angularFire) {
 		console.log($scope.sites);
 		$scope.currentSite++;
 		if ($scope.currentSite > $scope.sites.length) {
-			angularFire(ref, $scope, "sites");
+			//angularFire(ref, $scope, "sites");
 			$scope.currentSite = 0;
-			$scope.getCurrentSite();
+			//$scope.getCurrentSite();
 			console.log($scope.getSites());
 			//$scope.nextSite();
 		}
