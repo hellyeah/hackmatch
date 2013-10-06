@@ -24,6 +24,7 @@ function hackmatch($scope, angularFire) {
 		      //alert("Successfully retrieved " + results.length + " sites.");
 		      // Do something with the returned Parse.Object values
 		      $scope.sites = results;
+		      console.log(results);
 		      //$scope.getCurrentSite();
 		      //console.log($scope.sites);
 		      //console.log($scope.sites[1]);
@@ -53,7 +54,7 @@ function hackmatch($scope, angularFire) {
 //	}
 
 	$scope.nextSite = function () {
-		//console.log($scope.sites);
+		console.log($scope.sites);
 		$scope.currentSite++;
 		//$scope.toggle();
 	}
