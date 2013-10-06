@@ -14,7 +14,7 @@ function hackmatch($scope, angularFire) {
     $scope.iframeOne = "http://hackny.org/a/"
     $scope.iframeTwo = "http://www.mongodb.com/"
     //[BIND MODEL HERE]
-    angularFire(ref, $scope, "sites");
+    //angularFire(ref, $scope, "sites");
 
     var QueryString = function () {
 	  // This function is anonymous, is executed immediately and 
@@ -91,7 +91,7 @@ function hackmatch($scope, angularFire) {
 		      for (var i = 0; i < results.length; i++) {
 		      	console.log(results[i].get('contactEmail'));
 		      	//$scope.sites.push(results[i]);
-		      	ref.push({url: results[i].get('url'), contactEmail: results[i].get('contactEmail')});
+		      	$scope.sites[i] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
 		        //var sites[i] = results[i];
 		      }
 		        //$('iframe').attr("src", object.get('url'));
@@ -105,8 +105,6 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.loadStartupSites();
-
-
 
 	$scope.currentSite = 0;
 
@@ -122,6 +120,9 @@ function hackmatch($scope, angularFire) {
 	$scope.nextSite = function () {
 		console.log($scope.sites);
 		$scope.currentSite++;
+		if ($scope.currentSite >= $scope.sites.length) {
+			angularFire(ref, $scope, "sites");
+		}
 		//$scope.toggle();
 	}
 
