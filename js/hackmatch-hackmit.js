@@ -82,7 +82,7 @@ function hackmatch($scope, angularFire) {
 		      //alert("Successfully retrieved " + results.length + " sites.");
 		      // Do something with the returned Parse.Object values
 		      console.log('blah');
-		      //$scope.sites = results;
+		      $scope.sites = results;
 		      console.log(results);
 		      //$scope.getCurrentSite();
 		      //console.log($scope.sites);
