@@ -14,9 +14,35 @@ function hackmatch($scope, angularFire) {
     $scope.iframeOne = "http://hackny.org/a/"
     $scope.iframeTwo = "http://www.mongodb.com/"
     //[BIND MODEL HERE]
-    angularFire(ref, $scope, "sites");
+    //angularFire(ref, $scope, "sites");
 
+    $scope.loadSites = function () {
+		var TestSites = Parse.Object.extend("hackerSites");
+		var query = new Parse.Query(TestSites);
+		//query.containsAll("tags", [QueryString]);
+		  query.find({
+		    success: function(results) {
+		      //alert("Successfully retrieved " + results.length + " sites.");
+		      // Do something with the returned Parse.Object values
+		      $scope.sites = results;
+		      console.log(results);
+		      console.log('blah');
+		      //$scope.getCurrentSite();
+		      //console.log($scope.sites);
+		      //console.log($scope.sites[1]);
+		      //for (var i = 0; i < results.length; i++) { 
+		      //  var sites[i] = results[i];
+		        //$('iframe').attr("src", object.get('url'));
+		        //window.name = object.get('contactEmail');
+		      //}
+		    },
+		    error: function(error) {
+		      alert("Error: " + error.code + " " + error.message);
+		    }
+		  });
+	}
 
+	$scope.loadSites();
 
 	$scope.currentSite = 0;
 
