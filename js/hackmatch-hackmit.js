@@ -41,7 +41,32 @@ function hackmatch($scope, angularFire) {
 		  });
 	}
 
-	$scope.loadSites();
+	$scope.loadStartupSites = function () {
+		var TestSites = Parse.Object.extend("startupSites");
+		var query = new Parse.Query(TestSites);
+		query.containsAll("tags", ["hackmit"]);
+		  query.find({
+		    success: function(results) {
+		      //alert("Successfully retrieved " + results.length + " sites.");
+		      // Do something with the returned Parse.Object values
+		      $scope.sites = results;
+		      console.log(results);
+		      //$scope.getCurrentSite();
+		      //console.log($scope.sites);
+		      //console.log($scope.sites[1]);
+		      //for (var i = 0; i < results.length; i++) { 
+		      //  var sites[i] = results[i];
+		        //$('iframe').attr("src", object.get('url'));
+		        //window.name = object.get('contactEmail');
+		      //}
+		    },
+		    error: function(error) {
+		      alert("Error: " + error.code + " " + error.message);
+		    }
+		  });
+	}
+
+	$scope.loadStartupSites();
 
 
 
