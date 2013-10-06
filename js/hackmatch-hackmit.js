@@ -44,7 +44,9 @@ function hackmatch($scope, angularFire) {
    	$scope.loadSites = function () {
 		var TestSites = Parse.Object.extend("hackerSites");
 		var query = new Parse.Query(TestSites);
-		query.containsAll("tags", ["mhacks"]);
+		if (QueryString) {
+			query.containsAll("tags", [QueryString]);
+		}
 		  query.find({
 		    success: function(results) {
 		      //alert("Successfully retrieved " + results.length + " sites.");
@@ -70,7 +72,9 @@ function hackmatch($scope, angularFire) {
 	$scope.loadStartupSites = function () {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
-		query.containsAll("tags", [QueryString]);
+		if (QueryString) {
+			query.containsAll("tags", [QueryString]);
+		}
 		  query.find({
 		    success: function(results) {
 		      //alert("Successfully retrieved " + results.length + " sites.");
