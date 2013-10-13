@@ -8,7 +8,7 @@ function hackmatch($scope, angularFire) {
     
     //Initializing variables
     $scope.sites = [];
-    $scope.sites[0] = {url: "http://rapgenius.com/posts/533-Rap-genius-is-hiring", contactEmail: "tom@rapgenius.com"};
+    $scope.sites[0] = {url: "https://www.lob.com/", contactEmail: "harry@lob.com"};
     $scope.user = {email: 'blah', url: 'blah'};
     $scope.siteUrl = 'url';
     $scope.siteEmail = 'email'
