@@ -22,6 +22,7 @@ function hackmatch($scope, angularFire) {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
 		query.containsAll("tags", ["hackmit"]);
+		query.descending("updatedAt");
 		//if (QueryString) {
 		//	console.log('passed');
 		//	query.containsAll("tags", [QueryString]);
@@ -81,7 +82,7 @@ function hackmatch($scope, angularFire) {
 		}
 		//$scope.toggle();
 	}
-	
+
 	$scope.getCurrentSite = function () {
 		return $scope.getSites()[$scope.currentSite];
 	};
