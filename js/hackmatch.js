@@ -29,6 +29,7 @@ function hackmatch($scope, angularFire) {
 		//}
 		  query.find({
 		    success: function(results) {
+		    	mixpanel.track("Loaded Sites");
 		      //alert("Successfully retrieved " + results.length + " sites.");
 		      // Do something with the returned Parse.Object values
 		      console.log('blah');
@@ -69,6 +70,7 @@ function hackmatch($scope, angularFire) {
 //	}
 
 	$scope.nextSite = function () {
+		mixpanel.track("Next");
 		console.log($scope.sites);
 		if ($scope.currentSite < $scope.sites.length-1) {
 			//angularFire(ref, $scope, "sites");
@@ -94,6 +96,7 @@ function hackmatch($scope, angularFire) {
 
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
+		mixpanel.track("Interest");
 		if ($scope.siteEmail=="email") {
 			$('#windowTitleDialog').modal('show');
 		}
