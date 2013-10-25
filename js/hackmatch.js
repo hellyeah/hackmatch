@@ -127,6 +127,7 @@ function hackmatch($scope, angularFire) {
 		},
 		{
 			success: function(object) {
+				mixpanel.track("Expressed Interest");
 				console.log('interest');
 				//$scope.nextSite();
 			},
