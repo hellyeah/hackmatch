@@ -71,7 +71,8 @@ function hackmatch($scope, angularFire) {
 
 	$scope.nextSite = function () {
 		mixpanel.track("Next");
-		console.log($scope.sites);
+		//console.log($scope.sites);
+		console.log('Next');
 		if ($scope.currentSite < $scope.sites.length-1) {
 			//angularFire(ref, $scope, "sites");
 			$scope.currentSite++;
@@ -97,6 +98,7 @@ function hackmatch($scope, angularFire) {
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
 		mixpanel.track("Interest");
+		console.log('Interest');
 		if ($scope.siteEmail=="email") {
 			$('#windowTitleDialog').modal('show');
 		}
@@ -128,7 +130,7 @@ function hackmatch($scope, angularFire) {
 		{
 			success: function(object) {
 				mixpanel.track("Expressed Interest");
-				console.log('interest');
+				console.log('Expressed Interest Success');
 				//$scope.nextSite();
 			},
 			error: function(model, error) {

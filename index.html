@@ -1,98 +1,41 @@
 <!doctype html>
 <html ng-app="HackMatch">
 <head>
+	<!-- inclue AngularJS, UnderscoreJS, and JQuery-->
 	<script src="js/angular.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 	<!-- inclue Firebase JS SDK-->
 	<script src='https://cdn.firebase.com/v0/firebase.js'></script>
 	<script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script> 
 	<!-- inclue Parse JS SDK-->
 	<script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
 	<script text="text/javascript" src="js/ui-utils/modules/keypress/keypress.js"></script>
-
+	<!-- inclue Local JS-->
 	<script type="text/javascript" src="js/todo.js"></script>
 	<script type="text/javascript" src="js/hackmatch.js"></script>
-
-	<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
-
+	<script type="text/javascript" src="js/modal.js"></script>
+	<!-- inclue Local CSS-->
 	<link rel="stylesheet" href="css/todo.css">
 	<link rel="stylesheet" href="css/frames.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<!--include Bootstrap and PureCSS-->
+	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
+	<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
+	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
+	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 
-	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
-		<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
-		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
-		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
-		<style>
-			.divDemoBody  {
-				width: 60%;
-				margin-left: auto;
-				margin-right: auto;
-				margin-top: 100px;
-				}
-			.divDemoBody p {
-				font-size: 18px;
-				line-height: 140%;
-				padding-top: 12px;
-				}
-			.divDialogElements input {
-				font-size: 18px;
-				padding: 3px; 
-				height: 32px; 
-				width: 500px; 
-				}
-			.divButton {
-				padding-top: 12px;
-				}
-		</style>
-		<script>
-			$(document).ready(function() {
-				$('#windowTitleDialog').bind('show', function () {
-					document.getElementById ("xlInput").value = document.title;
-					});
-				//$('#windowTitleDialog').modal('show');
-				});
-			function closeDialog () {
-				$('#windowTitleDialog').modal('hide'); 
-				};
-			function okClicked () {
-				document.title = document.getElementById ("xlInput").value;
-				closeDialog ();
-				};
+	<meta name="viewport" content="width=device-width, user-scalable=false;">
 
-		</script>
-		<meta name="viewport" content="width=device-width, user-scalable=false;">
-		<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
-			typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
-			b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
-			mixpanel.init("109c4cfae42323edc89e097db8571282");</script>
-		<!-- end Mixpanel -->
+	<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+		typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+		b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+		mixpanel.init("109c4cfae42323edc89e097db8571282");</script>
+	<!-- end Mixpanel -->
 </head>
+
 </body>
-<!--
-	<input type="text" ng-model="name">
-	<h2>Hello {{name}}!</h2>
-
-	<div ng-controller="TodoCtrl">
-		<h2>Total todos: {{getTotalTodos()}}</h2>
-		<ul class="unstyled">
-			<li ng-repeat="todo in todos">
-				<input type="checkbox" ng-model="todo.done">
-				<span class="done-{{todo.done}}">{{todo.text}}</span>
-			</li>
-		</ul>
-		<form class="form-horizontal">
-			<input type="text" ng-model="formTodoText" ng-model-instant>
-			<button class="btn" ng-click="addTodo()">Add</button> 
-			{{formTodoText}}
-		</form>
-
-		<button class="btn-large" ng-click="clearCompleted()">
-			Clear Completed
-		</button>
-	</div>
--->
-
 	<div ng-controller="hackmatch">
 			<div id="windowTitleDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
 				<div class="modal-header">
@@ -107,26 +50,12 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button class="pure-button pure-button-primary signupd" onclick="closeDialog ();" ng-click="addSite()">Sign up for Hackmatch Beta</button> 
+					<button class="pure-button pure-button-primary signupd" onclick="closeDialog ();" ng-click="addSite()">Enter HackMatch Beta</button> 
 					</form>
 				</div>
 			</div>
-		<!--
-			<div class="divButtons">
-				<a data-toggle="modal" href="#windowTitleDialog" class="btn btn-primary btn-large">Sign Up</a>
-			</div>
-		-->
 
-		<!--save new url and email-->
-<!--
-		<form class="form-horizontal">
-			<input type="text" ng-model="siteUrl" ng-model-instant placeholder="url">
-			<input type="text" ng-model="siteEmail" ng-model-instant placeholder="email">
-			<button class="btn" ng-click="addSite()">Add</button> 
-			{{siteUrl}}  {{siteEmail}} 
-		</form>
--->
-		<div class="blah">
+		<div class="top-bar">
 			<button class="pure-button" ng-click="nextSite()">
 				Next Startup
 			</button>
