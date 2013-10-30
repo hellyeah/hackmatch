@@ -27,13 +27,17 @@
 }
 
 .my-modal {
-	position: fixed;
+
+	position: absolute;
 	top: 15%;
-	left: 10%;
+	left: 50%;
+	margin-left: -425px;
 	z-index: 1050;
 	overflow: auto;
-	width: 550px;
-	/*width: 80%;
+	width: 850px;
+
+	/*
+	width: 80%;
 	margin: -250px 0 0 -280px;*/
 	background-color: #ffffff;
 	border: 1px solid #999;
