@@ -10,7 +10,8 @@ function hackmatch($scope, angularFire) {
     $scope.sites = [];
     $scope.sites[0] = {url: "https://www.lob.com/", contactEmail: "harry@lob.com"};
     $scope.user = {email: 'blah', url: 'blah'};
-    $scope.siteUrl = 'url';
+    //$scope.siteUrl = 'url';
+    $scope.siteUrl = 'http://thisiswhyimawesome.com/';
     $scope.siteEmail = 'email'
     $scope.iframeOne = "http://hackny.org/a/"
     $scope.iframeTwo = "http://www.mongodb.com/"
