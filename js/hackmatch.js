@@ -13,10 +13,10 @@ function hackmatch($scope, angularFire) {
     $scope.sites[0] = {url: "https://www.lob.com/", contactEmail: "harry@lob.com"};
     $scope.user = {email: 'blah', url: 'blah'};
     //$scope.siteUrl = 'url';
-    $scope.siteUrl = 'http://thisiswhyimawesome.com/';
-    $scope.siteEmail = 'email'
-    $scope.iframeOne = "http://hackny.org/a/"
-    $scope.iframeTwo = "http://www.mongodb.com/"
+    $scope.siteUrl = 'personal website or github';
+    $scope.siteEmail = 'email';
+    $scope.iframeOne = "http://hackny.org/a/";
+    $scope.iframeTwo = "http://www.mongodb.com/";
     //[BIND MODEL HERE]
     //angularFire(ref, $scope, "sites");
 
