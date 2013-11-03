@@ -6,7 +6,7 @@ function hackmatch($scope, angularFire) {
 
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
 
-    $('#windowTitleDialog').modal('show'); 
+    $('#windowTitleDialog').modal('show');
     
     //Initializing variables
     $scope.sites = [];
@@ -134,7 +134,7 @@ function hackmatch($scope, angularFire) {
 			success: function(object) {
 				mixpanel.track("Expressed Interest");
 				console.log('Expressed Interest Success');
-				//$scope.nextSite();
+				$scope.nextSite();
 			},
 			error: function(model, error) {
 
