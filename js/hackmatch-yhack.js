@@ -77,7 +77,12 @@ function hackmatch($scope, angularFire) {
 		      	$scope.sites[i+1] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
 		      	$scope.getCurrentSite();
 		        //var sites[i] = results[i];
+		        console.log('new site');
 		      }
+		      //making sure it's only uniques
+		      console.log('check for uniques')
+		      $scope.sites = _.uniq($scope.sites, false, function(site){ return site.url;});
+		      console.log($scope.sites);
 		      $scope.currentSite = Math.floor((Math.random()*results.length));
 		        //$('iframe').attr("src", object.get('url'));
 		        //window.name = object.get('contactEmail');
