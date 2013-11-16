@@ -132,6 +132,8 @@ function hackmatch($scope, angularFire) {
 
 	$scope.filter = function() {
 		var filters = document.getElementsByName("filterCheckBox");
+		$scope.addFilters(_.filter(filters, function(tag){ return tag.checked; })); 
+		/*
 		for (i=0; i < filters.length; i++) {
 			if (filters[i].checked) {
 				console.log(filters[i].id);
@@ -141,20 +143,23 @@ function hackmatch($scope, angularFire) {
 				console.log('unchecked');
 			}
 		}
+		*/
 	}
 
-	$scope.addFilter = function (filter) {
+	$scope.addFilters = function (filters) {
 		//check if this is the first filter being added
 		//location.search gives ? on 
-		if ($scope.qs["tags"]) {
+		location.search = "?tags=" + _.map(filters, function(tag){ return tag.id; }).join();
+		/*
+		if (location.search) {
 			console.log('blahblah');
-			
+			location.search += "," + filter;
 		}
 		else {
 			console.log('first filter');
-			location.search
-
+			location.search = "?tags=" + filter;
 		}
+		*/
 	}
 
 
