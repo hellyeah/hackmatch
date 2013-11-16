@@ -5,8 +5,6 @@ function hackmatch($scope, angularFire) {
     var ref = new Firebase("https://hackmatch.firebaseio.com/");
 
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
-
-    //$('#windowTitleDialog').modal('show');
     
     //Initializing variables
     $scope.sites = [];
@@ -55,38 +53,19 @@ function hackmatch($scope, angularFire) {
 			query.containsAll("tags", $scope.qs["tags"].split(","));
 		}
 		query.descending("updatedAt");
-		//if (QueryString) {
-		//	console.log('passed');
-		//	query.containsAll("tags", [QueryString]);
-		//}
 		  query.find({
 		    success: function(results) {
 		    	mixpanel.track("Loaded Sites");
-		      //alert("Successfully retrieved " + results.length + " sites.");
-		      // Do something with the returned Parse.Object values
-		      console.log('blah');
-		      //$scope.sites = results;
-		      //console.log($scope.sites);
-		      console.log(results);
-		      //$scope.getCurrentSite();
-		      //console.log($scope.sites);
-		      //console.log($scope.sites[1]);
-		      for (var i = 0; i < results.length; i++) {
-		      	console.log(results[i].get('contactEmail') + results[i].get('url'));
-		      	//$scope.sites.push(results[i]);
-		      	$scope.sites[i+1] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
-		      	$scope.getCurrentSite();
-		        //var sites[i] = results[i];
-		        console.log('new site');
-		      }
-		      //making sure it's only uniques
-		      console.log('check for uniques')
-		      $scope.sites = _.uniq($scope.sites, false, function(site){ return site.url;});
-		      console.log($scope.sites);
-		      $scope.currentSite = Math.floor((Math.random()*results.length));
-		        //$('iframe').attr("src", object.get('url'));
-		        //window.name = object.get('contactEmail');
-		      //}
+		      	for (var i = 0; i < results.length; i++) {
+			      	console.log(results[i].get('contactEmail') + results[i].get('url'));
+			      	//$scope.sites.push(results[i]);
+			      	$scope.sites[i+1] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
+			      	$scope.getCurrentSite();
+		      	}
+		      	//making sure it's only uniques
+		      	$scope.sites = _.uniq($scope.sites, false, function(site){ return site.url;});
+		      	//setting currentSite to start at a random point
+		      	$scope.currentSite = Math.floor((Math.random()*results.length));
 		    },
 		    error: function(error) {
 		      alert("Error: " + error.code + " " + error.message);
@@ -97,17 +76,11 @@ function hackmatch($scope, angularFire) {
 	$scope.loadStartupSites();
 
 	$scope.getSites = function () {
-		//console.log(_.toArray($scope.sites));
 		return _.toArray($scope.sites);
 	}
 
-//	$scope.loadSites = function () {
-//		console.log($scope.userEmail);
-//	}
-
 	$scope.nextSite = function () {
 		mixpanel.track("Next");
-		//console.log($scope.sites);
 		console.log('Next');
 		if ($scope.currentSite < $scope.sites.length-1) {
 			//angularFire(ref, $scope, "sites");
@@ -130,6 +103,7 @@ function hackmatch($scope, angularFire) {
 		return $scope.getSites()[$scope.currentSite + 1];
 	};
 
+	//FILTER Functions
 	$scope.openFilter = function () {
 		console.log('filter pressed');
 		$('#filterDialog').modal('show');
@@ -138,37 +112,15 @@ function hackmatch($scope, angularFire) {
 	$scope.filter = function() {
 		var filters = document.getElementsByName("filterCheckBox");
 		$scope.addFilters(_.filter(filters, function(tag){ return tag.checked; })); 
-		/*
-		for (i=0; i < filters.length; i++) {
-			if (filters[i].checked) {
-				console.log(filters[i].id);
-				$scope.addFilter(filters[i].id);
-			}
-			else {
-				console.log('unchecked');
-			}
-		}
-		*/
 	}
 
 	$scope.addFilters = function (filters) {
 		//check if this is the first filter being added
 		//location.search gives ? on 
 		location.search = "?tags=" + _.map(filters, function(tag){ return tag.id; }).join();
-		/*
-		if (location.search) {
-			console.log('blahblah');
-			location.search += "," + filter;
-		}
-		else {
-			console.log('first filter');
-			location.search = "?tags=" + filter;
-		}
-		*/
 	}
 
-
-
+	//INTEREST Functions
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
 		console.log($scope.qs["tags"]);
@@ -215,45 +167,34 @@ function hackmatch($scope, angularFire) {
 		});
 	}
 
-
-	//Filter by hackathon
-
-
-	//add to firebase for hackers sites
-	$scope.addSite = function () {
-		var Site = Parse.Object.extend("testSites");
-		var site = new Site();
-		$scope.user.email = $scope.siteEmail;
-		$scope.user.url = $scope.siteUrl;
-		//$scope.toggle();
-		//**Force this upon arrival to the site
-		//$scope.user = {email: $scope.siteEmail, url: $scope.siteUrl};
-		//**VALIDATION
-		//Checkboxes for hackathons
-		//$scope.myDataRef = new Firebase('https://hackmatch.firebaseIO.com/');
-		//$scope.sites.push({url: $scope.siteUrl, email: $scope.siteEmail});
-		var now = new Date().valueOf();
-
-		ref.push({url: $scope.siteUrl, email: $scope.siteEmail, time: now});
-
-        site.save({url: $scope.siteUrl, contactEmail: $scope.siteEmail}, {
-          success: function(object) {
-            //$(".success").show();
-            //alert('Success!');
-            //$('#dialog-form').toggle();
-            //$scope.siteUrl = "";
-			//$scope.siteEmail = "";
-			$scope.interested();
-          },
-          error: function(model, error) {
-            //$(".error").show();
-          }
-        });
-
-
-		//$scope.siteUrl = "";
-		//$scope.siteEmail = "";
+	//Toast Functions
+	function drawToast(message){
+		
+		var alert = document.getElementById("toast");
+		
+		if (alert == null){
+			var toastHTML = '<div id="toast">' + message + '</div>';
+			document.body.insertAdjacentHTML('beforeEnd', toastHTML);
+		}
+		else{
+			alert.style.opacity = .9;
+		}
+		
+		intervalCounter = setTimeout("hideToast()", 1000);
 	}
+
+	function save(){
+		//maybe do _startupname_ saved
+		//lines = lines.replace("http://","")
+    	//lines = lines.replace("www.", "") # May replace some false positives ('www.com')
+    	//lines.replace(".com", "") 
+    	//lines.replace(".co", "") 
+    	//lines.replace(".io", "") 
+    	//urls = [url.split('/')[0] for url in lines.split()]
+		drawToast("Startup Saved");
+	}
+
+	//PRELOAD NEXT IFRAME Functions
 
 	$scope.iframeSite = function () {
 		return $scope.getCurrentSite().url;
@@ -310,77 +251,37 @@ function hackmatch($scope, angularFire) {
 		}
 	}
 
-
-/*
-	$scope.loadSites = function () {
-		var TestSites = Parse.Object.extend("testSites");
-		var query = new Parse.Query(TestSites);
-		  query.find({
-		    success: function(results) {
-		      //alert("Successfully retrieved " + results.length + " sites.");
-		      // Do something with the returned Parse.Object values
-		      $scope.sites = results;
-		      console.log($scope.sites);
-		      console.log($scope.sites[1]);
-		      //for (var i = 0; i < results.length; i++) { 
-		      //  var object = results[i];
-		      //  $('iframe').attr("src", object.get('url'));
-		      //  window.name = object.get('contactEmail');
-		      //}
-		    },
-		    error: function(error) {
-		      alert("Error: " + error.code + " " + error.message);
-		    }
-		  });
-	}
-
-	//save new url/email to firebase
+	//**WEIRD SHIT**//
+	//add to firebase for hackers sites
 	$scope.addSite = function () {
 		var Site = Parse.Object.extend("testSites");
-        var site = new Site();
-          site.save({url: $scope.siteUrl, contactEmail: $scope.siteEmail}, {
+		var site = new Site();
+		$scope.user.email = $scope.siteEmail;
+		$scope.user.url = $scope.siteUrl;
+		//$scope.toggle();
+		//**Force this upon arrival to the site
+		//$scope.user = {email: $scope.siteEmail, url: $scope.siteUrl};
+		//**VALIDATION
+		//Checkboxes for hackathons
+		//$scope.myDataRef = new Firebase('https://hackmatch.firebaseIO.com/');
+		//$scope.sites.push({url: $scope.siteUrl, email: $scope.siteEmail});
+		var now = new Date().valueOf();
+
+		ref.push({url: $scope.siteUrl, email: $scope.siteEmail, time: now});
+
+        site.save({url: $scope.siteUrl, contactEmail: $scope.siteEmail}, {
           success: function(object) {
             //$(".success").show();
-            alert('Success!');
+            //alert('Success!');
             //$('#dialog-form').toggle();
-            $scope.siteUrl = "";
-			$scope.siteEmail = "";
+            //$scope.siteUrl = "";
+			//$scope.siteEmail = "";
+			$scope.interested();
           },
           error: function(model, error) {
             //$(".error").show();
           }
         });
-	}
-
-	$scope.getSites = function () {
-		return $scope.sites;
-	}
-*/
-
-	function drawToast(message){
-		
-		var alert = document.getElementById("toast");
-		
-		if (alert == null){
-			var toastHTML = '<div id="toast">' + message + '</div>';
-			document.body.insertAdjacentHTML('beforeEnd', toastHTML);
-		}
-		else{
-			alert.style.opacity = .9;
-		}
-		
-		intervalCounter = setTimeout("hideToast()", 1000);
-	}
-
-	function save(){
-		//maybe do _startupname_ saved
-		//lines = lines.replace("http://","")
-    	//lines = lines.replace("www.", "") # May replace some false positives ('www.com')
-    	//lines.replace(".com", "") 
-    	//lines.replace(".co", "") 
-    	//lines.replace(".io", "") 
-    	//urls = [url.split('/')[0] for url in lines.split()]
-		drawToast("Startup Saved");
 	}
 
 }
