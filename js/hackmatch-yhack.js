@@ -16,6 +16,7 @@ function hackmatch($scope, angularFire) {
     $scope.siteUrl = 'personal website or github';
     $scope.siteEmail = 'email';
     $scope.resumeURL = "";
+    $scope.year = "freshman";
     //$scope.iframeOne = "http://hackny.org/a/";
     //$scope.iframeTwo = "http://www.mongodb.com/";
 
@@ -168,7 +169,8 @@ function hackmatch($scope, angularFire) {
 			url: $scope.user.url,
 			interestingStartups: $scope.getCurrentSite().email,
 			startupURL: $scope.getCurrentSite().url,
-			resumeURL: $scope.resumeURL
+			resumeURL: $scope.resumeURL,
+			year: $scope.year
 		},
 		{
 			success: function(object) {
