@@ -367,4 +367,18 @@ function hackmatch($scope, angularFire) {
 
 }
 
+	app.directive('ngEnter', function ($document) {
+	    return function (scope, element, attrs) {
+	        element.bind("keydown keypress", function (event) {
+	            if(event.which === 39) {
+	                scope.$apply(function (){
+	                    scope.$eval(attrs.ngEnter);
+	                });
+
+	                event.preventDefault();
+	            }
+	        });
+	    };
+	});
+
 //$('.website-frame').css('height', $(window).height()+'px');
