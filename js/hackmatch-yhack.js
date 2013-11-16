@@ -6,25 +6,43 @@ function hackmatch($scope, angularFire) {
 
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
 
-    $('#windowTitleDialog').modal('show');
+    //$('#windowTitleDialog').modal('show');
     
     //Initializing variables
     $scope.sites = [];
-    $scope.sites[0] = {url: "https://www.lob.com/", contactEmail: "harry@lob.com"};
+    $scope.sites[0] = {url: "https://www.apptimize.com/", contactEmail: "nancy@apptimize.com"};
     $scope.user = {email: 'blah', url: 'blah'};
     //$scope.siteUrl = 'url';
     $scope.siteUrl = 'personal website or github';
     $scope.siteEmail = 'email';
     $scope.iframeOne = "http://hackny.org/a/";
     $scope.iframeTwo = "http://www.mongodb.com/";
+
+   	$scope.currentSite = 0;
     //[BIND MODEL HERE]
     //angularFire(ref, $scope, "sites");
+
+    //qs==Query String -- takes url params and hands them to me in a JSON
+    $scope.qs = (function(a) {
+	    if (a == "") return {};
+	    var b = {};
+	    for (var i = 0; i < a.length; ++i)
+	    {
+	        var p=a[i].split('=');
+	        if (p.length != 2) continue;
+	        b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+	    }
+	    return b;
+	})(window.location.search.substr(1).split('&'));
 
 
 	$scope.loadStartupSites = function () {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
-		query.containsAll("tags", ["hackmit"]);
+		console.log($scope.qs["tags"]);
+		if ($scope.qs["tags"]) {
+			query.containsAll("tags", $scope.qs["tags"].split(","));
+		}
 		query.descending("updatedAt");
 		//if (QueryString) {
 		//	console.log('passed');
@@ -49,6 +67,7 @@ function hackmatch($scope, angularFire) {
 		      	$scope.getCurrentSite();
 		        //var sites[i] = results[i];
 		      }
+		      $scope.currentSite = Math.floor((Math.random()*results.length));
 		        //$('iframe').attr("src", object.get('url'));
 		        //window.name = object.get('contactEmail');
 		      //}
@@ -60,8 +79,6 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.loadStartupSites();
-
-	$scope.currentSite = 0;
 
 	$scope.getSites = function () {
 		//console.log(_.toArray($scope.sites));
@@ -100,6 +117,7 @@ function hackmatch($scope, angularFire) {
 
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
+		console.log($scope.qs["tags"]);
 		mixpanel.track("Interest");
 		console.log('Interest');
 		if ($scope.siteEmail=="email") {
