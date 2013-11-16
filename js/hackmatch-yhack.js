@@ -8,15 +8,18 @@ function hackmatch($scope, angularFire) {
     
     //Initializing variables
     $scope.sites = [];
+    //have to preload so that everything works while I'm waiting for Parse
     $scope.sites[0] = {url: "https://www.apptimize.com/", contactEmail: "nancy@apptimize.com"};
+    $scope.sites[1] = {url: "https://www.watchsend.com/", contactEmail: "zain@watchsend.com"};
     $scope.user = {email: 'blah', url: 'blah'};
     //$scope.siteUrl = 'url';
     $scope.siteUrl = 'personal website or github';
     $scope.siteEmail = 'email';
-    $scope.iframeOne = "http://hackny.org/a/";
-    $scope.iframeTwo = "http://www.mongodb.com/";
+    //$scope.iframeOne = "http://hackny.org/a/";
+    //$scope.iframeTwo = "http://www.mongodb.com/";
 
    	$scope.currentSite = 0;
+   	$scope.hideOriginalIframe = false;
     //[BIND MODEL HERE]
     //angularFire(ref, $scope, "sites");
 
@@ -82,26 +85,34 @@ function hackmatch($scope, angularFire) {
 	$scope.nextSite = function () {
 		mixpanel.track("Next");
 		console.log('Next');
+
+		//HIDES original frame as soon as next is clicked the first time -- maybe use an if so it doesnt happen every time
+		$scope.hideOriginalIframe = true;
+
 		if ($scope.currentSite < $scope.sites.length-1) {
-			//angularFire(ref, $scope, "sites");
 			$scope.currentSite++;
-			//$scope.getCurrentSite();
-			//console.log($scope.getSites());
-			//$scope.nextSite();
 		}
 		else {
 			$scope.currentSite = 0;
 		}
-		//$scope.toggle();
+
+		$scope.hideFrameOne();
+		$scope.hideFrameTwo();
 	}
 
 	$scope.getCurrentSite = function () {
-		return $scope.getSites()[$scope.currentSite];
+		return $scope.getSiteAtIndex($scope.currentSite);
 	};
 
+	$scope.getSiteAtIndex = function (n) {
+		return $scope.getSites()[n];
+	}
+
+/*
 	$scope.getNextSite = function () {
 		return $scope.getSites()[$scope.currentSite + 1];
 	};
+*/
 
 	//FILTER Functions
 	$scope.openFilter = function () {
@@ -195,6 +206,73 @@ function hackmatch($scope, angularFire) {
 	}
 
 	//PRELOAD NEXT IFRAME Functions
+	//we have $scope.currentSite at our disposal to base everything off of -- should use even/odd and display block | none
+	//have to compensate for the preloaded iframe at 0 -- maybe have a third frame just for that first one -- we dont call it til next is hit so tht could help us :)
+	//need a getFrameAtIndex(n) function and even getCurrentFrame should use it
+	$scope.frameOneCount = 1;
+	$scope.frameTwoCount = 2;
+
+	$scope.frameOne = "";
+	$scope.frameTwo = "";
+
+	$scope.hideFrameOne = function () {
+		//if odd
+		if ( $scope.currentSite % 2 ) {
+			//display frameOne
+			console.log('displaying frame one');
+			$scope.preloadIframeOne($scope.currentSite);
+			return false;
+		}
+		else if ($scope.currentSite < $scope.sites.length - 1) {
+			//preload next odd one
+			console.log('hiding frame one');
+			$scope.preloadIframeOne($scope.currentSite+1);
+			return true;
+		}
+		else {
+			console.log('hiding frame one');
+			$scope.preloadIframeOne(1);
+			return true;
+		}
+	}
+
+	$scope.hideFrameTwo = function () {
+		//if even
+		if ( !($scope.currentSite % 2) ) {
+			//display frameTwo
+			//just in case it hasn't been preloaded:
+			$scope.preloadIframeTwo($scope.currentSite);
+			console.log('displaying frame two');
+			return false;
+		}
+		else if ($scope.currentSite < $scope.sites.length - 1) {
+			//preload next even one
+			$scope.preloadIframeTwo($scope.currentSite+1);
+			return true;
+		}
+		else {
+			$scope.preloadIframeTwo(0);
+			return true;
+		}
+	}
+
+	$scope.preloadIframeOne = function(index) {
+		console.log('loading iframe one:' + $scope.getSiteAtIndex(index).url);
+		$scope.frameOne = $scope.getSiteAtIndex(index).url;
+	}
+
+	$scope.preloadIframeTwo = function(index) {
+		console.log('loading iframe two:' + $scope.getSiteAtIndex(index).url);
+		$scope.frameTwo = $scope.getSiteAtIndex(index).url;
+	}
+
+
+
+	//OLD IFRAME SHIT//
+
+	//if true then it's displayed
+	//when it's toggled to false we should load next one
+
 
 	$scope.iframeSite = function () {
 		return $scope.getCurrentSite().url;
