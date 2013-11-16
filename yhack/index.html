@@ -28,6 +28,9 @@
 	<link rel="stylesheet" href="../css/main.css">
 	<link rel="stylesheet" href="../css/topbar.css">
 
+	<!--Dropbox Initialization-->
+	<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="foic27w2mli0sig"></script>
+
 
 	<meta name="viewport" content="width=device-width, user-scalable=false;">
 
@@ -93,6 +96,8 @@
 						<div class="divDialogElements">
 								<input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" ng-model-instant placeholder={{siteUrl}}>
 								<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" ng-model-instant placeholder={{siteEmail}}>
+								<input type="dropbox-chooser" name="selected-file" data-link-type="direct" id="db-chooser"/>
+
 						</div>
 					</div>
 					<div class="modal-footer">

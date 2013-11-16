@@ -15,6 +15,7 @@ function hackmatch($scope, angularFire) {
     //$scope.siteUrl = 'url';
     $scope.siteUrl = 'personal website or github';
     $scope.siteEmail = 'email';
+    $scope.resumeURL = "";
     //$scope.iframeOne = "http://hackny.org/a/";
     //$scope.iframeTwo = "http://www.mongodb.com/";
 
@@ -166,7 +167,8 @@ function hackmatch($scope, angularFire) {
 			contactEmail: $scope.user.email,
 			url: $scope.user.url,
 			interestingStartups: $scope.getCurrentSite().email,
-			startupURL: $scope.getCurrentSite().url
+			startupURL: $scope.getCurrentSite().url,
+			resumeURL: $scope.resumeURL
 		},
 		{
 			success: function(object) {
@@ -364,6 +366,12 @@ function hackmatch($scope, angularFire) {
           }
         });
 	}
+
+    document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
+        function(e) {
+            //alert("Here's the chosen file: " + e.files[0].link)
+            $scope.resumeURL = e.files[0].link;
+        }, false);
 
 }
 
