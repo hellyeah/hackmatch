@@ -1,0 +1,18 @@
+.top-bar {
+	background-color: black;
+	width: 100%;
+}
+
+.pure-button {
+	margin-right: 5px;
+	margin-left: 5px;
+	height: 40px;
+}
+
+.logo {
+	float: left;
+}
+
+.filter {
+	float: right;
+}
