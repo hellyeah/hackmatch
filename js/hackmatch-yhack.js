@@ -153,6 +153,7 @@ function hackmatch($scope, angularFire) {
 				mixpanel.track("Expressed Interest");
 				console.log('Expressed Interest Success');
 				$scope.nextSite();
+				save();
 			},
 			error: function(model, error) {
 
@@ -301,6 +302,32 @@ function hackmatch($scope, angularFire) {
 		return $scope.sites;
 	}
 */
+
+	function drawToast(message){
+		
+		var alert = document.getElementById("toast");
+		
+		if (alert == null){
+			var toastHTML = '<div id="toast">' + message + '</div>';
+			document.body.insertAdjacentHTML('beforeEnd', toastHTML);
+		}
+		else{
+			alert.style.opacity = .9;
+		}
+		
+		intervalCounter = setTimeout("hideToast()", 1000);
+	}
+
+	function save(){
+		//maybe do _startupname_ saved
+		//lines = lines.replace("http://","")
+    	//lines = lines.replace("www.", "") # May replace some false positives ('www.com')
+    	//lines.replace(".com", "") 
+    	//lines.replace(".co", "") 
+    	//lines.replace(".io", "") 
+    	//urls = [url.split('/')[0] for url in lines.split()]
+		drawToast("Startup Saved");
+	}
 
 }
 

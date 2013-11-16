@@ -13,3 +13,5 @@ function okClicked () {
 	document.title = document.getElementById ("xlInput").value;
 	closeDialog ();
 };
+
+
