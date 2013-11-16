@@ -55,6 +55,9 @@ function hackmatch($scope, angularFire) {
 			$scope.setInitialFilters();
 			query.containsAll("tags", $scope.qs["tags"].split(","));
 		}
+		else {
+			query.containsAll("tags", ["hackmit"]);
+		}
 		query.descending("updatedAt");
 		  query.find({
 		    success: function(results) {
