@@ -15,18 +15,19 @@
 	<script type="text/javascript" src="../js/todo.js"></script>
 	<script type="text/javascript" src="../js/hackmatch-yhack.js"></script>
 	<script type="text/javascript" src="../js/modal.js"></script>
-	<!-- inclue Local CSS-->
-	<link rel="stylesheet" href="../css/todo.css">
-	<link rel="stylesheet" href="../css/frames.css">
-	<link rel="stylesheet" href="../css/modal.css">
-	<link rel="stylesheet" href="../css/main.css">
-	<link rel="stylesheet" href="../css/topbar.css">
 	<!--include Bootstrap and PureCSS-->
 	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
 	<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+	<!-- inclue Local CSS-->
+	<link rel="stylesheet" href="../css/todo.css">
+	<link rel="stylesheet" href="../css/frames.css">
+	<link rel="stylesheet" href="../css/modal.css">
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/topbar.css">
+
 
 	<meta name="viewport" content="width=device-width, user-scalable=false;">
 
@@ -54,7 +55,7 @@
 			</button>
 
 			<div class="filter">
-				<button class="pure-button pure-button-primary" ng-click="expressedInterest()">
+				<button class="pure-button pure-button-primary" ng-click="openFilter()">
 					Filter
 				</button>
 			</div>
@@ -96,6 +97,29 @@
 					</div>
 					<div class="modal-footer">
 						<button class="pure-button pure-button-primary signupd" onclick="closeDialog ();" ng-click="addSite()">Find the perfect startup now!</button> 
+					</div>
+
+			</div>
+
+
+
+			<div id="filterDialog" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+			<!--<h2>Want to work at the next ______?</h2>-->
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3>HackMatch Preferences</h3>
+				</div>
+
+				<!--<h4>1.Leave your email and a link that best represents you (personal website, github, linkedin)</h4>-->
+
+					<div class="modal-body">
+						<div>
+							<label class="filter-label"><input class="filterCheckBox" id='hackmit' type="checkbox" name="filterCheckBox"/>hackmit</label>
+							<label class="filter-label"><input class="filterCheckBox" id='blah' type="checkbox" ng-click="addFilter(this.id)" name="filterCheckBox"/>blah</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="pure-button pure-button-primary signup" onclick="closeFilterDialog ();" ng-click="filter()">Filter</button> 
 					</div>
 
 			</div>

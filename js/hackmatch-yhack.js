@@ -35,12 +35,23 @@ function hackmatch($scope, angularFire) {
 	    return b;
 	})(window.location.search.substr(1).split('&'));
 
+	$scope.setInitialFilters = function() {
+		//just iterate through param tags and check boxes
+		var tags = $scope.qs["tags"].split(",");
+		for (var i=0; i < tags.length; i++) {
+			var checkbox = document.getElementById(tags[i]);
+			if (checkbox) {
+				checkbox.checked=true;			
+			}
+		}
+	}
 
 	$scope.loadStartupSites = function () {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
 		console.log($scope.qs["tags"]);
 		if ($scope.qs["tags"]) {
+			$scope.setInitialFilters();
 			query.containsAll("tags", $scope.qs["tags"].split(","));
 		}
 		query.descending("updatedAt");
@@ -113,6 +124,39 @@ function hackmatch($scope, angularFire) {
 	$scope.getNextSite = function () {
 		return $scope.getSites()[$scope.currentSite + 1];
 	};
+
+	$scope.openFilter = function () {
+		console.log('filter pressed');
+		$('#filterDialog').modal('show');
+	}
+
+	$scope.filter = function() {
+		var filters = document.getElementsByName("filterCheckBox");
+		for (i=0; i < filters.length; i++) {
+			if (filters[i].checked) {
+				console.log(filters[i].id);
+				$scope.addFilter(filters[i].id);
+			}
+			else {
+				console.log('unchecked');
+			}
+		}
+	}
+
+	$scope.addFilter = function (filter) {
+		//check if this is the first filter being added
+		//location.search gives ? on 
+		if ($scope.qs["tags"]) {
+			console.log('blahblah');
+			
+		}
+		else {
+			console.log('first filter');
+			location.search
+
+		}
+	}
+
 
 
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array

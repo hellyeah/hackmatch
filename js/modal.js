@@ -9,6 +9,10 @@ function closeDialog () {
 	$('#windowTitleDialog').modal('hide'); 
 };
 
+function closeFilterDialog () {
+	$('#filterDialog').modal('hide'); 
+};
+
 function okClicked () {
 	document.title = document.getElementById ("xlInput").value;
 	closeDialog ();

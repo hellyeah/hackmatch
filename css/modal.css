@@ -52,3 +52,19 @@
 	-moz-background-clip: padding-box;
 	background-clip: padding-box;
 }
+
+.filter-label {
+ /*text-align: none;*/
+ border:1px solid #ccc;
+ padding:10px;
+ margin:0 0 10px;
+ display: inline-block; 
+}
+.filter-label:hover {
+ background:#eee;
+ cursor:pointer;
+}
+.filterCheckBox {
+	display: inline-block;
+	margin-right: 5px;
+}
