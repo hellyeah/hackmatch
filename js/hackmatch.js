@@ -6,6 +6,9 @@ function hackmatch($scope, angularFire) {
 
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
     
+
+    $('#windowTitleDialog').modal('show');
+    
     //Initializing variables
     $scope.sites = [];
     //have to preload so that everything works while I'm waiting for Parse
