@@ -369,12 +369,6 @@ function hackmatch($scope, angularFire) {
         });
 	}
 
-    document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
-        function(e) {
-            //alert("Here's the chosen file: " + e.files[0].link)
-            $scope.resumeURL = e.files[0].link;
-        }, false);
-
 }
 
 	app.directive('ngEnter', function ($document) {

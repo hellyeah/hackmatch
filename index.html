@@ -38,9 +38,10 @@
 </head>
 
 </body>
-	<div ng-controller="hackmatch">
+<div ng-app="" ng-controller="hackmatch" ng-enter="nextSite()" tabindex="0">
 
 		<div class="top-bar">
+
 			<button class="pure-button" ng-click="nextSite()">
 				Next Startup
 			</button>
@@ -48,6 +49,7 @@
 			<button class="pure-button pure-button-primary" ng-click="expressedInterest()">
 				I'm Interested
 			</button>
+
 		</div>
 
 			<div id="windowTitleDialog" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
@@ -92,7 +94,14 @@
 
 		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
 		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>-->
-		<iframe class="frameOne website-frame" ng-model-instant src={{getCurrentSite().url}}></iframe>
+		
+		<!--Initial Preloaded Iframe for the startup of the week 
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideOriginalIframe" src={{getCurrentSite().url}}></iframe>
+		-->
+
+		<!--Toggling Iframes One and Two / need to set display to alternate with angular showFrameOne/Two()-->
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideFrameOne()" src={{frameOne}}></iframe>
+		<iframe class="frameTwo website-frame" ng-model-instant ng-hide="hideFrameTwo()" src={{frameTwo}}></iframe>
 
 <!--
 		<iframe class="frameOne website-frame" ng-hide={{myValue}} src={{getCurrentSite().url}}></iframe>
@@ -106,6 +115,11 @@
 -->
 	</div>
 <script>
+	function hideToast(){
+		var alert = document.getElementById("toast");
+		alert.style.opacity = 0;
+	};
+
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
