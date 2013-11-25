@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "hackmatch"
+        }, 
+        "hackmatch": {
+            "applicationId": "RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", 
+            "masterKey": "LUat4gSAM878wmMaarNSRgmu96QTBf6tvuN0vGm9"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.8"
+    }
+}

@@ -6,7 +6,19 @@ function hackmatch($scope, angularFire) {
 
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
     
-
+    //going to pass in email -- check if email already in -- if not, send onboarding email
+    $scope.testCloudCode = function() {
+    	console.log('blah')
+    	Parse.Cloud.run('hello', {}, {
+		  success: function(result) {
+		    // result is 'Hello world!'
+		    console.log(result)
+		  },
+		  error: function(error) {
+		  	console.log('rawr')
+		  }
+		});
+    }
     //$('#windowTitleDialog').modal('show');
     
     //Initializing variables

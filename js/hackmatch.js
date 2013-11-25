@@ -4,6 +4,10 @@ var app = angular.module("HackMatch", ["firebase", "ui.keypress"]);
 function hackmatch($scope, angularFire) {
     var ref = new Firebase("https://hackmatch.firebaseio.com/");
 
+    $scope.testCloudCode = function() {
+    	console.log('blah')
+    }
+
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
     
 
