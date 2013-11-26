@@ -25,9 +25,9 @@ Parse.Cloud.define("averageStars", function(request, response) {
 var Mailgun = require('mailgun');
 Mailgun.initialize('hackmatch.com', 'key-2787lpq0ilh16bhm2hex9ijc88hngq68');
 
-var onboardEmail = function () {
+var onboardEmail = function (contactEmail) {
 	Mailgun.sendEmail({
-	  to: "davidhfontenot@gmail.com",
+	  to: contactEmail,
 	  from: "Dave Fontenot <dave@hackmatch.com>",
 	  subject: "Let's find you the perfect startup!",
 	  text: "Using Parse and Mailgun is great!",
@@ -78,7 +78,7 @@ Parse.Cloud.define("isAlreadyUser", function(request, response) {
 	    		onboardEmail(request.params.contactEmail);
 	    	}
 	    	else {
-	    		response.success('already onboarded');
+	    		response.success(request.params.contactEmail + 'already onboarded');
 	    	}
 	    },
 	    error: function() {
