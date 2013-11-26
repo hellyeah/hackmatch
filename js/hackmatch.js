@@ -153,7 +153,7 @@ function hackmatch($scope, angularFire) {
 			error: function (error) {
 				console.log('error onboarding');
 			}
-		})
+		});
 		console.log($scope.qs["tags"]);
 		mixpanel.track("Interest");
 		console.log('Interest');
