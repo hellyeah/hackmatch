@@ -149,7 +149,7 @@ function hackmatch($scope, angularFire) {
 		Parse.Cloud.run("isAlreadyUser", {contactEmail: $scope.siteEmail}, {
 			success: function (object) {
 				console.log('success checked');
-			}
+			},
 			error: function (error) {
 				console.log('error onboarding');
 			}
