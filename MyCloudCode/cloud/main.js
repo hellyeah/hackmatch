@@ -63,9 +63,9 @@ var isAlreadyUser = function(contactEmail) {
 	});
 }
 //before save
-Parse.Cloud.beforeSave("interest", function(request, response) {
-	isAlreadyUser(request.object.get('contactEmail'));
-});
+//Parse.Cloud.beforeSave("interest", function(request, response) {
+//	isAlreadyUser(request.object.get('contactEmail'));
+//});
 
 //take email and respond with true if that email has already expressed interest. false otherwise.
 Parse.Cloud.define("isAlreadyUser", function(request, response) {
