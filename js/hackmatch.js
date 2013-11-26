@@ -146,14 +146,14 @@ function hackmatch($scope, angularFire) {
 	//INTEREST Functions
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
-		Parse.Cloud.run("isAlreadyUser", contactEmail: $scope.siteEmail {
+		Parse.Cloud.run({"isAlreadyUser", contactEmail: $scope.siteEmail}, {
 			success: function (object) {
 				console.log('success checked');
 			}
 			error: function (error) {
 				console.log('error onboarding');
 			}
-		});
+		})
 		console.log($scope.qs["tags"]);
 		mixpanel.track("Interest");
 		console.log('Interest');
