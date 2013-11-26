@@ -146,7 +146,7 @@ function hackmatch($scope, angularFire) {
 	//INTEREST Functions
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
-		Parse.Cloud.run({"isAlreadyUser", contactEmail: $scope.siteEmail}, {
+		Parse.Cloud.run("isAlreadyUser", {contactEmail: $scope.siteEmail}, {
 			success: function (object) {
 				console.log('success checked');
 			}
