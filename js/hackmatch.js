@@ -354,6 +354,14 @@ function hackmatch($scope, angularFire) {
 	//**WEIRD SHIT**//
 	//add to firebase for hackers sites
 	$scope.addSite = function () {
+		Parse.Cloud.run("isAlreadyUser", {contactEmail: $scope.siteEmail}, {
+			success: function (object) {
+				console.log('success checked:' + object);
+			},
+			error: function (error) {
+				console.log('error onboarding');
+			}
+		});
 		var Site = Parse.Object.extend("testSites");
 		var site = new Site();
 		$scope.user.email = $scope.siteEmail;
