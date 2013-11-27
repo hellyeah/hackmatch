@@ -74,7 +74,8 @@ Parse.Cloud.define("isAlreadyUser", function(request, response) {
 	  query.equalTo("contactEmail", request.params.contactEmail);
 	  query.count({
 	    success: function(count) {
-	    	if (count < 1) {
+	    	//should have just put in their email for the first time and it have been saved
+	    	if (count == 1) {
 	    		response.success('onboard email sent');
 	    		onboardEmail(request.params.contactEmail);
 	    	}

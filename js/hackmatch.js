@@ -146,14 +146,6 @@ function hackmatch($scope, angularFire) {
 	//INTEREST Functions
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
-		Parse.Cloud.run("isAlreadyUser", {contactEmail: $scope.siteEmail}, {
-			success: function (object) {
-				console.log('success checked:' + object);
-			},
-			error: function (error) {
-				console.log('error onboarding');
-			}
-		});
 		console.log($scope.qs["tags"]);
 		mixpanel.track("Interest");
 		console.log('Interest');
@@ -189,6 +181,14 @@ function hackmatch($scope, angularFire) {
 		},
 		{
 			success: function(object) {
+				Parse.Cloud.run("isAlreadyUser", {contactEmail: $scope.siteEmail}, {
+					success: function (object) {
+						console.log('success checked:' + object);
+					},
+					error: function (error) {
+						console.log('error onboarding');
+					}
+				});
 				mixpanel.track("Expressed Interest");
 				console.log('Expressed Interest Success');
 				$scope.nextSite();
@@ -354,14 +354,6 @@ function hackmatch($scope, angularFire) {
 	//**WEIRD SHIT**//
 	//add to firebase for hackers sites
 	$scope.addSite = function () {
-		Parse.Cloud.run("isAlreadyUser", {contactEmail: $scope.siteEmail}, {
-			success: function (object) {
-				console.log('success checked:' + object);
-			},
-			error: function (error) {
-				console.log('error onboarding');
-			}
-		});
 		var Site = Parse.Object.extend("testSites");
 		var site = new Site();
 		$scope.user.email = $scope.siteEmail;
