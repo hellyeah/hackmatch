@@ -1,0 +1,35 @@
+/*========= Mobile Styles =========*/
+
+
+@media (max-width: 600px) {
+
+	/*--- Modal Popup ---*/
+	.modal-content {
+		width: 80%;
+		margin: 0 auto;
+		display: block;
+		top: 20px;
+		position: relative;
+	}
+	.how {
+		width: 90%;
+	}
+	.modal-footer {
+		text-align: center;
+	}
+	.pure-button {
+		width: auto;
+	}
+	.divDialogElements input {
+		font-size: 13px;
+	}
+	.modal-backdrop {
+		width: 100% !important;
+	}
+
+
+	/*--- Frames ---*/
+	.website-frame {
+		width: 100% !important;
+	}
+}
