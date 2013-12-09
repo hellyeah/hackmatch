@@ -18,18 +18,19 @@
 	<script type="text/javascript" src="js/todo.js"></script>
 	<script type="text/javascript" src="js/hackmatch.js"></script>
 	<script type="text/javascript" src="js/modal.js"></script>
-	<!-- inclue Local CSS-->
-	<link rel="stylesheet" href="css/todo.css">
-	<link rel="stylesheet" href="css/frames.css">
-	<link rel="stylesheet" href="css/modal.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/topbar.css">
 	<!--include Bootstrap and PureCSS-->
 	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
 	<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+	<!-- inclue Local CSS-->
+	<link rel="stylesheet" href="css/todo.css">
+	<link rel="stylesheet" href="css/frames.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/topbar.css">
+	<link rel="stylesheet" href="css/mobile.css">
 
 	<!--facebook OG data-->
 	<meta property="og:image" content="http://hackmatch.com/img/hackmatchapplogo.png"/>
@@ -59,41 +60,46 @@
 		</div>
 
 			<div id="windowTitleDialog" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
-			<!--<h2>Want to work at the next ______?</h2>-->
-				<div class="modal-header">
-					<a href="#" class="close" data-dismiss="modal">&times;</a>
-					<h3>HackMatch</h3>
-				</div>
 
-				<h2>Want to work at an awesome startup?</h2>
+				<div class="modal-content">
 
-				<h3>It&#39;s simple.</h3>
-
-				<!--<h4>1.Leave your email and a link that best represents you (personal website, github, linkedin)</h4>-->
-
-				<ul class="hows">
-					<li class="how">
-						<h3>Let us know which startups you&#39;re interested in.</h3>
-						<p class="description">We've put together a curated list of the top startups in the country. Click through and let us know which startups you&#39;re interested in. All you have to do is hit Hell yeah!</p>
-					</li>
-					<li class="how">
-						<h3>HackMatch will hook you up!</h3> 
-						<p class="description">Shortly, you&#39;ll receive an email from your very own HackMatch agent. Your agent will introduce you to startups, help prepare you for interviews, and even help you figure out housing once you've signed an offer.</p>
-					</li>
-				</ul>
-
-				<h2>
-					We do everything except interview for you!
-				</h2>
-
-					<div class="modal-body">
-						<div class="divDialogElements">
-								<input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" ng-model-instant placeholder={{siteUrl}}>
-								<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" ng-model-instant placeholder={{siteEmail}}>
-						</div>
+					<!--<h2>Want to work at the next ______?</h2>-->
+					<div class="modal-header">
+						<a href="#" class="close" data-dismiss="modal">&times;</a>
+						<h3>HackMatch</h3>
 					</div>
-					<div class="modal-footer">
-						<button class="pure-button pure-button-primary signupd" onclick="closeDialog ();" ng-click="addSite()">Find the perfect startup now!</button> 
+
+					<h2>Want to work at an awesome startup?</h2>
+
+					<h3>It&#39;s simple.</h3>
+
+					<!--<h4>1.Leave your email and a link that best represents you (personal website, github, linkedin)</h4>-->
+
+					<ul class="hows">
+						<li class="how">
+							<h3>Let us know which startups you&#39;re interested in.</h3>
+							<p class="description">We've put together a curated list of the top startups in the country. Click through and let us know which startups you&#39;re interested in. All you have to do is hit Hell yeah!</p>
+						</li>
+						<li class="how">
+							<h3>HackMatch will hook you up!</h3> 
+							<p class="description">Shortly, you&#39;ll receive an email from your very own HackMatch agent. Your agent will introduce you to startups, help prepare you for interviews, and even help you figure out housing once you've signed an offer.</p>
+						</li>
+					</ul>
+
+					<h2>
+						We do everything except interview for you!
+					</h2>
+
+						<div class="modal-body">
+							<div class="divDialogElements">
+									<input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" ng-model-instant placeholder={{siteUrl}}>
+									<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" ng-model-instant placeholder={{siteEmail}}>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="pure-button pure-button-primary signupd" onclick="closeDialog ();" ng-click="addSite()">Find the perfect startup now!</button> 
+						</div>
+						
 					</div>
 
 			</div>

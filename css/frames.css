@@ -1,12 +1,9 @@
 .frameOne {
 	position: absolute;
-	z-index: 1000;
 }
 
 .frameTwo {
 	position: absolute;
-	/*top: 20px;*/
-	z-index: 999;
 }
 
 .website-frame {
@@ -17,6 +14,7 @@
     height: 1000px; 
     margin: 0;
     padding: 0;
+    z-index: 1;
 }
 
 @media (max-width: 600px) {
@@ -31,16 +29,11 @@
 	.modal {
 		max-width: 80%;
 	}
-	#windowTitleDialog {
-		margin-left: -250px;
-	}
 	.signup {
 		width: 60%;
 	}
 	.frameOne {
 		max-width: 100%;
-		-webkit-transform:scale(0.5);
-		-moz-transform-scale(0.5);"
 	}
 }
 

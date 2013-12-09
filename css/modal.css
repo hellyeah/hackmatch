@@ -26,19 +26,21 @@
 	width: 75%;
 }
 
-.my-modal {
-
+#windowTitleDialog {
+	width: 100%;
+	height: 100%;
 	position: absolute;
-	top: 15%;
-	left: 50%;
-	margin-left: -425px;
+}
+
+.modal-content {
+
+	position: relative;
 	z-index: 1050;
+	top: 10vh;
+	margin: 0 auto;
 	overflow: auto;
 	width: 850px;
 
-	/*
-	width: 80%;
-	margin: -250px 0 0 -280px;*/
 	background-color: #ffffff;
 	border: 1px solid #999;
 	border: 1px solid rgba(0, 0, 0, 0.3);
