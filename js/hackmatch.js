@@ -16,7 +16,7 @@ function hackmatch($scope, angularFire) {
     //Initializing variables
     $scope.sites = [];
     //have to preload so that everything works while I'm waiting for Parse
-    $scope.sites[0] = {url: "https://www.thalmic.com/en/myo/.com/", contactEmail: "stephen@thalmic.com"};
+    $scope.sites[0] = {url: "https://www.thalmic.com/en/myo/", contactEmail: "stephen@thalmic.com"};
     $scope.sites[1] = {url: "https://www.watchsend.com/", contactEmail: "zain@watchsend.com"};
     $scope.user = {email: 'blah', url: 'blah'};
     //$scope.siteUrl = 'url';
