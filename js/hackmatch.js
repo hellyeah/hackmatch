@@ -234,8 +234,8 @@ function hackmatch($scope, angularFire) {
 	$scope.frameOneCount = 1;
 	$scope.frameTwoCount = 2;
 
-	$scope.frameOne = "";
-	$scope.frameTwo = "";
+	$scope.frameOne = $scope.sites[1].url;
+	$scope.frameTwo = $scope.sites[0].url;
 
 	$scope.hideFrameOne = function () {
 		//if odd
