@@ -1,8 +1,9 @@
 /*========= Mobile Styles =========*/
 
 
-/*----- Modal Popup ------*/
 @media (max-width: 600px) {
+
+	/*--- Modal Popup ---*/
 	.modal-content {
 		width: 80%;
 		margin: 0 auto;
@@ -21,5 +22,14 @@
 	}
 	.divDialogElements input {
 		font-size: 13px;
+	}
+	.modal-backdrop {
+		width: 100% !important;
+	}
+
+
+	/*--- Frames ---*/
+	.website-frame {
+		width: 100% !important;
 	}
 }
