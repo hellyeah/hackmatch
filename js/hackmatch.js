@@ -278,6 +278,12 @@ function hackmatch($scope, angularFire) {
 		}
 	}
 
+	$scope.hideInitialFrame = function () {
+		if ($scope.currentSite > 1) {
+			return true;
+		}
+	}
+
 	$scope.preloadIframeOne = function(index) {
 		console.log('loading iframe one:' + $scope.getSiteAtIndex(index).url);
 		$scope.frameOne = $scope.getSiteAtIndex(index).url;

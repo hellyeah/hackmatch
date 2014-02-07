@@ -60,9 +60,7 @@
 		</div>
 
 			<div id="windowTitleDialog" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
-
 				<div class="modal-content">
-
 					<!--<h2>Want to work at the next ______?</h2>-->
 					<div class="modal-header">
 						<a href="#" class="close" data-dismiss="modal">&times;</a>
@@ -112,6 +110,9 @@
 		-->
 
 		<!--Toggling Iframes One and Two / need to set display to alternate with angular showFrameOne/Two()-->
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideInitialFrame()" src="https://www.thalmic.com/en/myo/"></iframe>
+		<iframe class="frameTwo website-frame" ng-model-instant ng-hide="hideInitialFrame()" src="https://zerocater.com/"></iframe>
+
 		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideFrameOne()" src={{frameOne}}></iframe>
 		<iframe class="frameTwo website-frame" ng-model-instant ng-hide="hideFrameTwo()" src={{frameTwo}}></iframe>
 
