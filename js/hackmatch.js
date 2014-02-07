@@ -238,8 +238,12 @@ function hackmatch($scope, angularFire) {
 	$scope.frameTwo = $scope.sites[0].url;
 
 	$scope.hideFrameOne = function () {
+
+		if ($scope.hideInitialFrame() == "false") {
+			return true;
+		}
 		//if odd
-		if ( $scope.currentSite % 2 ) {
+		else if ( $scope.currentSite % 2 ) {
 			//display frameOne
 			console.log('displaying frame one');
 			$scope.preloadIframeOne($scope.currentSite);
@@ -259,8 +263,11 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.hideFrameTwo = function () {
+		if ($scope.hideInitialFrame() == "false") {
+			return true;
+		}
 		//if even
-		if ( !($scope.currentSite % 2) ) {
+		else if ( !($scope.currentSite % 2) ) {
 			//display frameTwo
 			//just in case it hasn't been preloaded:
 			$scope.preloadIframeTwo($scope.currentSite);
@@ -281,6 +288,9 @@ function hackmatch($scope, angularFire) {
 	$scope.hideInitialFrame = function () {
 		if ($scope.currentSite > 2) {
 			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
