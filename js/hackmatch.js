@@ -20,8 +20,8 @@ function hackmatch($scope, angularFire) {
     $scope.sites[1] = {url: "https://www.watchsend.com/", contactEmail: "zain@watchsend.com"};
     $scope.user = {email: 'blah', url: 'blah'};
     //$scope.siteUrl = 'url';
-    $scope.siteUrl = 'personal website or github';
-    $scope.siteEmail = 'email';
+    $scope.siteUrl = '';
+    $scope.siteEmail = '';
     $scope.resumeURL = "";
     $scope.year = "freshman";
     //$scope.iframeOne = "http://hackny.org/a/";
