@@ -149,7 +149,7 @@ function hackmatch($scope, angularFire) {
 		console.log($scope.qs["tags"]);
 		mixpanel.track("Interest");
 		console.log('Interest');
-		if ($scope.siteEmail=="email") {
+		if ($scope.siteEmail=="") {
 			$('#windowTitleDialog').modal('show');
 		}
 		else {
