@@ -286,7 +286,7 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.hideInitialFrame = function () {
-		if ($scope.currentSite > 2) {
+		if ($scope.currentSite > 0) {
 			return true;
 		}
 		else {
