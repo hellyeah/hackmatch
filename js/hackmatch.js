@@ -24,6 +24,7 @@ function hackmatch($scope, angularFire) {
     $scope.siteEmail = '';
     $scope.resumeURL = "";
     $scope.year = "freshman";
+    $scope.numberOfNext = 0;
     //$scope.iframeOne = "http://hackny.org/a/";
     //$scope.iframeTwo = "http://www.mongodb.com/";
 
@@ -97,6 +98,7 @@ function hackmatch($scope, angularFire) {
 	$scope.nextSite = function () {
 		mixpanel.track("Next");
 		console.log('Next');
+		$scope.numberOfNext++;
 
 		//HIDES original frame as soon as next is clicked the first time -- maybe use an if so it doesnt happen every time
 		$scope.hideOriginalIframe = true;
@@ -238,14 +240,13 @@ function hackmatch($scope, angularFire) {
 	$scope.frameTwo = $scope.sites[0].url;
 
 	$scope.hideFrameOne = function () {
-
-		if ($scope.hideInitialFrame() == "false") {
+		if ($scope.numberOfNext == 0) {
 			return true;
 		}
 		//if odd
 		else if ( $scope.currentSite % 2 ) {
 			//display frameOne
-			console.log('displaying frame one');
+			//console.log('displaying frame one');
 			$scope.preloadIframeOne($scope.currentSite);
 			return false;
 		}
@@ -263,7 +264,7 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.hideFrameTwo = function () {
-		if ($scope.hideInitialFrame() == "false") {
+		if ($scope.numberOfNext == 0) {
 			return true;
 		}
 		//if even
@@ -271,7 +272,7 @@ function hackmatch($scope, angularFire) {
 			//display frameTwo
 			//just in case it hasn't been preloaded:
 			$scope.preloadIframeTwo($scope.currentSite);
-			console.log('displaying frame two');
+			//console.log('displaying frame two');
 			return false;
 		}
 		else if ($scope.currentSite < $scope.sites.length - 1) {
@@ -286,7 +287,7 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.hideInitialFrame = function () {
-		if ($scope.currentSite > 0) {
+		if ($scope.numberOfNext > 0) {
 			return true;
 		}
 		else {
