@@ -56,5 +56,5 @@ function HackMatch($scope) {
 	$scope.getSites = function () {
 		$scope.myDataRef = new Firebase('https://kwcvibr57kn.firebaseio-demo.com/');
 	}
-
 }
+*/

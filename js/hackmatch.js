@@ -115,7 +115,9 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.getCurrentSite = function () {
+		console.log($scope.getSiteAtIndex($scope.currentSite))
 		return $scope.getSiteAtIndex($scope.currentSite);
+		//return $scope.getSiteAtIndex(index);
 	};
 
 	$scope.getSiteAtIndex = function (n) {
@@ -148,7 +150,7 @@ function hackmatch($scope, angularFire) {
 	//INTEREST Functions
 	//**update object with the user who expressed interest...maybe make this an array and just push to the array
 	$scope.expressedInterest = function () {
-		console.log($scope.qs["tags"]);
+		//console.log($scope.qs["tags"]);
 		mixpanel.track("Interest");
 		console.log('Interest');
 		if ($scope.siteEmail=="") {
@@ -162,6 +164,7 @@ function hackmatch($scope, angularFire) {
 	$scope.interested = function () {
 		console.log($scope.siteEmail);
 		console.log($scope.siteUrl);
+		console.log($scope.getCurrentSite().url);
 		//if ($scope.siteEmail=="email") {
 		//	$('#windowTitleDialog').modal('show');
 		//}
@@ -296,12 +299,12 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.preloadIframeOne = function(index) {
-		console.log('loading iframe one:' + $scope.getSiteAtIndex(index).url);
+		//console.log('loading iframe one:' + $scope.getSiteAtIndex(index).url);
 		$scope.frameOne = $scope.getSiteAtIndex(index).url;
 	}
 
 	$scope.preloadIframeTwo = function(index) {
-		console.log('loading iframe two:' + $scope.getSiteAtIndex(index).url);
+		//console.log('loading iframe two:' + $scope.getSiteAtIndex(index).url);
 		$scope.frameTwo = $scope.getSiteAtIndex(index).url;
 	}
 
