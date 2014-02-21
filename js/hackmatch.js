@@ -16,8 +16,9 @@ function hackmatch($scope, angularFire) {
     //Initializing variables
     $scope.sites = [];
     //have to preload so that everything works while I'm waiting for Parse
-    $scope.sites[0] = {url: "https://www.thalmic.com/en/myo/", contactEmail: "stephen@thalmic.com"};
+    $scope.sites[0] = {url: "https://zerocater.com", contactEmail: "a@zerocater.com"};
     $scope.sites[1] = {url: "https://www.watchsend.com/", contactEmail: "zain@watchsend.com"};
+    $scope.sites[2] = {url: "https://www.thalmic.com/en/myo/", contactEmail: "stephen@thalmic.com"};
     $scope.user = {email: 'blah', url: 'blah'};
     //$scope.siteUrl = 'url';
     $scope.siteUrl = '';
@@ -75,7 +76,7 @@ function hackmatch($scope, angularFire) {
 		      	for (var i = 0; i < results.length; i++) {
 			      	//console.log(results[i].get('contactEmail') + results[i].get('url'));
 			      	//$scope.sites.push(results[i]);
-			      	$scope.sites[i+1] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
+			      	$scope.sites[i+3] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
 			      	$scope.getCurrentSite();
 		      	}
 		      	//making sure it's only uniques
@@ -153,6 +154,7 @@ function hackmatch($scope, angularFire) {
 		//console.log($scope.qs["tags"]);
 		mixpanel.track("Interest");
 		console.log('Interest');
+		console.log($scope.getCurrentSite().url)
 		if ($scope.siteEmail=="") {
 			$('#userInfo').modal('show');
 		}
@@ -162,8 +164,9 @@ function hackmatch($scope, angularFire) {
 	}
 
 	$scope.interested = function () {
-		console.log($scope.siteEmail);
-		console.log($scope.siteUrl);
+		console.log("Interested Info")
+		//console.log($scope.siteEmail);
+		//console.log($scope.siteUrl);
 		console.log($scope.getCurrentSite().url);
 		//if ($scope.siteEmail=="email") {
 		//	$('#windowTitleDialog').modal('show');
@@ -196,8 +199,9 @@ function hackmatch($scope, angularFire) {
 				});
 				mixpanel.track("Expressed Interest");
 				console.log('Expressed Interest Success');
-				$scope.nextSite();
 				save();
+				$scope.nextSite();
+				$scope.getCurrentSite();
 			},
 			error: function(model, error) {
 
