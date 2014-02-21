@@ -60,7 +60,7 @@ function hackmatch($scope, angularFire) {
 	$scope.loadStartupSites = function () {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
-		console.log($scope.qs["tags"]);
+		//console.log($scope.qs["tags"]);
 		if ($scope.qs["tags"]) {
 			$scope.setInitialFilters();
 			query.containsAll("tags", $scope.qs["tags"].split(","));
@@ -152,7 +152,7 @@ function hackmatch($scope, angularFire) {
 		mixpanel.track("Interest");
 		console.log('Interest');
 		if ($scope.siteEmail=="") {
-			$('#windowTitleDialog').modal('show');
+			$('#userInfo').modal('show');
 		}
 		else {
 			$scope.interested();

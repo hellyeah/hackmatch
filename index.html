@@ -87,19 +87,28 @@
 					<h2>
 						We do everything except interview for you!
 					</h2>
+					<div class="modal-footer-center">
+						<button class="pure-button pure-button-primary center" onclick="closeDialog();">Find the perfect startup now!</button> 
+					</div>		
+				</div>
+			</div>
 
-						<div class="modal-body">
-							<div class="divDialogElements">
-									<input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" placeholder="personal website or github">
-									<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" placeholder="email">
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="pure-button pure-button-primary signupd" onclick="closeDialog ();" ng-click="addSite()">Find the perfect startup now!</button> 
-						</div>
-						
+			<div id="userInfo" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+				<div class="modal-content">
+					<div class="modal-header">
+						<a href="#" class="close" data-dismiss="modal">&times;</a>
+						<h3>HackMatch</h3>
 					</div>
-
+					<div class="modal-body">
+						<div class="divDialogElements">
+								<input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="siteUrl" placeholder="personal website or github">
+								<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="siteEmail" placeholder="email">
+						</div>
+					</div>
+						<div class="modal-footer-center">
+							<button class="pure-button pure-button-primary" onclick="closeUserDialog();" ng-click="addSite()">Find the perfect startup now!</button> 
+						</div>		
+				</div>
 			</div>
 
 		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
