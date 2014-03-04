@@ -19,17 +19,18 @@ function hackmatch($scope, angularFire) {
     $scope.sites[0] = {url: "https://zerocater.com", contactEmail: "a@zerocater.com"};
     $scope.sites[1] = {url: "https://www.watchsend.com/", contactEmail: "zain@watchsend.com"};
     $scope.sites[2] = {url: "https://www.thalmic.com/en/myo/", contactEmail: "stephen@thalmic.com"};
-    $scope.user = {email: 'blah', url: 'blah'};
+    //$scope.user = {email: '', url: ''};
     //$scope.siteUrl = 'url';
-    $scope.siteUrl = '';
-    $scope.siteEmail = '';
-    $scope.resumeURL = "";
-    $scope.year = "freshman";
+    $scope.user = {url: '', email: ''};
+    //$scope.user.url = '';
+    //$scope.user.email = '';
+    //$scope.resumeURL = "";
+    //$scope.year = "freshman";
     $scope.numberOfNext = 0;
     //$scope.iframeOne = "http://hackny.org/a/";
     //$scope.iframeTwo = "http://www.mongodb.com/";
 
-   	$scope.currentSite = 0;
+   	$scope.currentSite = 1;
    	$scope.hideOriginalIframe = false;
     //[BIND MODEL HERE]
     //angularFire(ref, $scope, "sites");
@@ -61,6 +62,7 @@ function hackmatch($scope, angularFire) {
 	$scope.loadStartupSites = function () {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
+		query.limit(1000);
 		//console.log($scope.qs["tags"]);
 		if ($scope.qs["tags"]) {
 			$scope.setInitialFilters();
@@ -96,6 +98,16 @@ function hackmatch($scope, angularFire) {
 		return _.toArray($scope.sites);
 	}
 
+	$scope.getCurrentSite = function () {
+		//console.log($scope.getSiteAtIndex($scope.currentSite))
+		return $scope.getSiteAtIndex($scope.currentSite);
+		//return $scope.getSiteAtIndex(index);
+	};
+
+	$scope.getSiteAtIndex = function (n) {
+		return $scope.getSites()[n];
+	}
+
 	$scope.nextSite = function () {
 		mixpanel.track("Next");
 		console.log('Next');
@@ -115,14 +127,67 @@ function hackmatch($scope, angularFire) {
 		$scope.hideFrameTwo();
 	}
 
-	$scope.getCurrentSite = function () {
-		console.log($scope.getSiteAtIndex($scope.currentSite))
-		return $scope.getSiteAtIndex($scope.currentSite);
-		//return $scope.getSiteAtIndex(index);
-	};
 
-	$scope.getSiteAtIndex = function (n) {
-		return $scope.getSites()[n];
+	//INTEREST Functions
+	//**update object with the user who expressed interest...maybe make this an array and just push to the array
+	$scope.expressedInterest = function () {
+		//console.log($scope.qs["tags"]);
+		if ($scope.user.email=="") {
+			$('#userInfo').modal('show');
+		}
+		else {
+			mixpanel.track("Interest");
+			console.log('Interested in: ');
+			console.log($scope.getCurrentSite().url)
+			console.log('startup number: ' + $scope.currentSite);
+			$scope.interested($scope.getCurrentSite(), $scope.user);
+		}
+	}
+
+	$scope.interested = function (startup, user) {
+		//console.log("Interested Info")
+		//console.log($scope.siteEmail);
+		//console.log($scope.siteUrl);
+		//console.log($scope.getCurrentSite().url);
+		//if ($scope.siteEmail=="email") {
+		//	$('#windowTitleDialog').modal('show');
+		//}
+		//set bool to true if interested or false if not interested...maybe just append to the user parse data the email of the company
+		//userEmail
+		//site.save(null, {
+		//	success: function(site) {
+		//**NEED to just find a way to update the interestingStartups column of the original testSites object so I can just addunique
+		var Interest = Parse.Object.extend("interest");
+		var interest = new Interest();
+		//site.addUnique("interestingStartups", $scope.getCurrentSite.email);
+		interest.save({
+			contactEmail: user.email,
+			url: user.url,
+			interestingStartups: startup.email,
+			startupURL: startup.url,
+			//resumeURL: $scope.resumeURL,
+			//year: $scope.year
+		},
+		{
+			success: function(object) {
+				Parse.Cloud.run("isAlreadyUser", {contactEmail: user.email}, {
+					success: function (object) {
+						console.log('success checked:' + object);
+					},
+					error: function (error) {
+						console.log('error onboarding');
+					}
+				});
+				mixpanel.track("Expressed Interest");
+				console.log('Expressed Interest Success');
+				save();
+				$scope.nextSite();
+				//$scope.getCurrentSite();
+			},
+			error: function(model, error) {
+
+			}
+		});
 	}
 
 /*
@@ -146,67 +211,6 @@ function hackmatch($scope, angularFire) {
 		//check if this is the first filter being added
 		//location.search gives ? on 
 		location.search = "?tags=" + _.map(filters, function(tag){ return tag.id; }).join();
-	}
-
-	//INTEREST Functions
-	//**update object with the user who expressed interest...maybe make this an array and just push to the array
-	$scope.expressedInterest = function () {
-		//console.log($scope.qs["tags"]);
-		mixpanel.track("Interest");
-		console.log('Interest');
-		console.log($scope.getCurrentSite().url)
-		if ($scope.siteEmail=="") {
-			$('#userInfo').modal('show');
-		}
-		else {
-			$scope.interested();
-		}
-	}
-
-	$scope.interested = function () {
-		console.log("Interested Info")
-		//console.log($scope.siteEmail);
-		//console.log($scope.siteUrl);
-		console.log($scope.getCurrentSite().url);
-		//if ($scope.siteEmail=="email") {
-		//	$('#windowTitleDialog').modal('show');
-		//}
-		//set bool to true if interested or false if not interested...maybe just append to the user parse data the email of the company
-		//userEmail
-		//site.save(null, {
-		//	success: function(site) {
-		//**NEED to just find a way to update the interestingStartups column of the original testSites object so I can just addunique
-		var Interest = Parse.Object.extend("interest");
-		var interest = new Interest();
-		//site.addUnique("interestingStartups", $scope.getCurrentSite.email);
-		interest.save({
-			contactEmail: $scope.user.email,
-			url: $scope.user.url,
-			interestingStartups: $scope.getCurrentSite().email,
-			startupURL: $scope.getCurrentSite().url,
-			resumeURL: $scope.resumeURL,
-			year: $scope.year
-		},
-		{
-			success: function(object) {
-				Parse.Cloud.run("isAlreadyUser", {contactEmail: $scope.siteEmail}, {
-					success: function (object) {
-						console.log('success checked:' + object);
-					},
-					error: function (error) {
-						console.log('error onboarding');
-					}
-				});
-				mixpanel.track("Expressed Interest");
-				console.log('Expressed Interest Success');
-				save();
-				$scope.nextSite();
-				$scope.getCurrentSite();
-			},
-			error: function(model, error) {
-
-			}
-		});
 	}
 
 	//Toast Functions
@@ -240,11 +244,11 @@ function hackmatch($scope, angularFire) {
 	//we have $scope.currentSite at our disposal to base everything off of -- should use even/odd and display block | none
 	//have to compensate for the preloaded iframe at 0 -- maybe have a third frame just for that first one -- we dont call it til next is hit so tht could help us :)
 	//need a getFrameAtIndex(n) function and even getCurrentFrame should use it
-	$scope.frameOneCount = 1;
-	$scope.frameTwoCount = 2;
+	//$scope.frameOneCount = 1;
+	//$scope.frameTwoCount = 2;
 
-	$scope.frameOne = $scope.sites[1].url;
-	$scope.frameTwo = $scope.sites[0].url;
+	//$scope.frameOne = $scope.sites[1].url;
+	//$scope.frameTwo = $scope.sites[0].url;
 
 	$scope.hideFrameOne = function () {
 		if ($scope.numberOfNext == 0) {
@@ -380,8 +384,8 @@ function hackmatch($scope, angularFire) {
 	$scope.addSite = function () {
 		var Site = Parse.Object.extend("testSites");
 		var site = new Site();
-		$scope.user.email = $scope.siteEmail;
-		$scope.user.url = $scope.siteUrl;
+		$scope.user.email;
+		$scope.user.url;
 		//$scope.toggle();
 		//**Force this upon arrival to the site
 		//$scope.user = {email: $scope.siteEmail, url: $scope.siteUrl};
@@ -391,9 +395,9 @@ function hackmatch($scope, angularFire) {
 		//$scope.sites.push({url: $scope.siteUrl, email: $scope.siteEmail});
 		var now = new Date().valueOf();
 
-		ref.push({url: $scope.siteUrl, email: $scope.siteEmail, time: now});
+		ref.push({url: $scope.user.url, email: $scope.user.email, time: now});
 
-        site.save({url: $scope.siteUrl, contactEmail: $scope.siteEmail}, {
+        site.save({url: $scope.user.url, contactEmail: $scope.user.email}, {
           success: function(object) {
             //$(".success").show();
             //alert('Success!');
