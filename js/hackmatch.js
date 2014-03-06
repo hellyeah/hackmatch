@@ -31,7 +31,18 @@ function hackmatch($scope, angularFire) {
     //$scope.iframeTwo = "http://www.mongodb.com/";
 
    	$scope.currentSite = 1;
-   	$scope.hideOriginalIframe = false;
+
+   	$scope.originalFrameHidden = false;
+   	$scope.frameOne = {};
+   	$scope.frameTwo = {};
+
+   	$scope.frameOne.hidden = true;
+   	$scope.frameOne.url = "https://www.watchsend.com/";
+   	
+   	$scope.frameTwo.hidden = true; 
+   	$scope.frameTwo.url = "https://www.thalmic.com/en/myo/";
+
+
     //[BIND MODEL HERE]
     //angularFire(ref, $scope, "sites");
 
@@ -110,21 +121,34 @@ function hackmatch($scope, angularFire) {
 
 	$scope.nextSite = function () {
 		mixpanel.track("Next");
-		console.log('Next');
+		console.log('Next clicked');
 		$scope.numberOfNext++;
 
 		//HIDES original frame as soon as next is clicked the first time -- maybe use an if so it doesnt happen every time
-		$scope.hideOriginalIframe = true;
+		$scope.originalFrameHidden = true;
 
 		if ($scope.currentSite < $scope.sites.length-1) {
 			$scope.currentSite++;
-		}
-		else {
-			$scope.currentSite = 0;
+			if ($scope.currentSite % 2) {
+				//odd
+				console.log('odd');
+				$scope.frameOne.hidden = true;
+				$scope.frameOne.url = $scope.getSiteAtIndex($scope.currentSite+1).url; //new url
+				$scope.frameTwo.hidden = false;
+			}
+			else {
+				console.log('even');
+				//do this if even
+				//hide one of the frames by just flipping a variable
+				//show the other frame
+				//change the first frames value
+				$scope.frameTwo.hidden = true;
+				$scope.frameTwo.url = $scope.getSiteAtIndex($scope.currentSite+1).url; //new url
+				$scope.frameOne.hidden = false;
+			}
 		}
 
-		$scope.hideFrameOne();
-		$scope.hideFrameTwo();
+
 	}
 
 
@@ -141,7 +165,12 @@ function hackmatch($scope, angularFire) {
 			console.log($scope.getCurrentSite().url)
 			console.log('startup number: ' + $scope.currentSite);
 			$scope.interested($scope.getCurrentSite(), $scope.user);
+			$scope.nextSite();
 		}
+	}
+
+	$scope.saveInterest = function (startup) {
+		console.log('saved interest');
 	}
 
 	$scope.interested = function (startup, user) {
@@ -181,7 +210,7 @@ function hackmatch($scope, angularFire) {
 				mixpanel.track("Expressed Interest");
 				console.log('Expressed Interest Success');
 				save();
-				$scope.nextSite();
+				//$scope.nextSite();
 				//$scope.getCurrentSite();
 			},
 			error: function(model, error) {

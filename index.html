@@ -120,12 +120,12 @@
 
 		<!--Toggling Iframes One and Two / need to set display to alternate with angular showFrameOne/Two()-->
 		<!--<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideInitialFrame()" src="https://www.thalmic.com/en/myo/"></iframe>-->
-		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideInitialFrame()" src="https://zerocater.com"></iframe>
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="originalFrameHidden" src="https://zerocater.com"></iframe>
 
 		<!--<iframe class="frameTwo website-frame" ng-model-instant ng-hide="hideInitialFrame()" src="https://zerocater.com/"></iframe>-->
 
-		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideFrameOne()" src={{frameOne}}></iframe>
-		<iframe class="frameTwo website-frame" ng-model-instant ng-hide="hideFrameTwo()" src={{frameTwo}}></iframe>
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="frameOne.hidden" src={{frameOne.url}}></iframe>
+		<iframe class="frameTwo website-frame" ng-model-instant ng-hide="frameTwo.hidden" src={{frameTwo.url}}></iframe>
 
 <!--
 		<iframe class="frameOne website-frame" ng-hide={{myValue}} src={{getCurrentSite().url}}></iframe>
