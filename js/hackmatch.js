@@ -152,6 +152,16 @@ function hackmatch($scope, angularFire) {
 				$scope.frameOne.hidden = false;
 			}
 		}
+		else {
+			//have to think more about the case where we hit the end of the array
+			$scope.currentSite = 0;
+
+			$scope.frameOne.url = $scope.getSiteAtIndex($scope.currentSite).url;
+			
+			$scope.frameTwo.hidden = true;
+			$scope.frameTwo.url = $scope.getSiteAtIndex($scope.currentSite+1).url;
+			$scope.frameOne.hidden = false;
+		}
 
 
 	}
