@@ -70,6 +70,10 @@ function hackmatch($scope, angularFire) {
 		}
 	}
 
+	$scope.addStartups = function (currentStartups, newStartups) {
+		$scope.sites = currentStartups.concat(newStartups);
+	}
+
 	$scope.loadStartupSites = function () {
 		var TestSites = Parse.Object.extend("sponsorSites");
 		var query = new Parse.Query(TestSites);
@@ -90,6 +94,7 @@ function hackmatch($scope, angularFire) {
 			      	//console.log(results[i].get('contactEmail') + results[i].get('url'));
 			      	//$scope.sites.push(results[i]);
 			      	$scope.sites[i+3] = {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')};
+			      	//$scope.addStartups($scope.sites, {url: results[i].get('url'), contactEmail: results[i].get('contactEmail')});
 			      	$scope.getCurrentSite();
 		      	}
 		      	//making sure it's only uniques
