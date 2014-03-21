@@ -1,0 +1,157 @@
+<!doctype html>
+<html ng-app="HackMatch">
+<head>
+
+	<title>HackMatch</title>
+
+	<!-- inclue AngularJS, UnderscoreJS, and JQuery-->
+	<script src="js/angular.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+	<!-- inclue Firebase JS SDK-->
+	<script src='https://cdn.firebase.com/v0/firebase.js'></script>
+	<script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script> 
+	<!-- inclue Parse JS SDK-->
+	<script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+	<script text="text/javascript" src="../js/ui-utils/modules/keypress/keypress.js"></script>
+	<!-- inclue Local JS-->
+	<script type="text/javascript" src="../js/todo.js"></script>
+	<script type="text/javascript" src="../js/hackmatch.js"></script>
+	<script type="text/javascript" src="../js/modal.js"></script>
+	<!--include Bootstrap and PureCSS-->
+	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
+	<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
+	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
+	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+	<!-- inclue Local CSS-->
+	<link rel="stylesheet" href="../css/todo.css">
+	<link rel="stylesheet" href="../css/frames.css">
+	<link rel="stylesheet" href="../css/modal.css">
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/topbar.css">
+	<link rel="stylesheet" href="../css/mobile.css">
+
+	<!--facebook OG data-->
+	<meta property="og:image" content="http://hackmatch.com/img/hackmatchapplogo.png"/>
+
+	<meta name="viewport" content="width=device-width, user-scalable=false;">
+
+	<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+		typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+		b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+		mixpanel.init("109c4cfae42323edc89e097db8571282");</script>
+	<!-- end Mixpanel -->
+</head>
+
+</body>
+<div ng-app="" ng-controller="hackmatch" ng-enter="nextSite()" tabindex="0">
+
+		<div class="top-bar">
+
+			<button class="pure-button" ng-click="nextSite()">
+				NEXT
+			</button>
+
+			<button class="pure-button pure-button-primary" ng-click="expressedInterest()">
+				HELL YEAH
+			</button>
+
+		</div>
+
+			<div id="windowTitleDialog" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+				<div class="modal-content">
+					<!--<h2>Want to work at the next ______?</h2>-->
+					<div class="modal-header">
+						<a href="#" class="close" data-dismiss="modal">&times;</a>
+						<h3>HackMatch</h3>
+					</div>
+
+					<h2>Want to work at an awesome startup?</h2>
+
+					<h3>It&#39;s simple.</h3>
+
+					<!--<h4>1.Leave your email and a link that best represents you (personal website, github, linkedin)</h4>-->
+
+					<ul class="hows">
+						<li class="how">
+							<h3>Let us know which startups you&#39;re interested in.</h3>
+							<p class="description">We've put together a curated list of the top startups in the country. Click through and let us know which startups you&#39;re interested in. All you have to do is hit Hell yeah!</p>
+						</li>
+						<li class="how">
+							<h3>HackMatch will hook you up!</h3> 
+							<p class="description">Shortly, you&#39;ll receive an email from your very own HackMatch agent. Your agent will introduce you to startups, help prepare you for interviews, and even help you figure out housing once you've signed an offer.</p>
+						</li>
+					</ul>
+
+					<h2>
+						We do everything except interview for you!
+					</h2>
+					<div class="modal-footer-center">
+						<button class="pure-button pure-button-primary center" onclick="closeDialog();">Find the perfect startup now!</button> 
+					</div>		
+				</div>
+			</div>
+
+			<div id="userInfo" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+				<div class="modal-content">
+					<div class="modal-header">
+						<a href="#" class="close" data-dismiss="modal">&times;</a>
+						<h3>HackMatch</h3>
+					</div>
+					<div class="modal-body">
+						<div class="divDialogElements">
+								<input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="user.url" placeholder="personal website or github">
+								<input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="user.email" placeholder="email">
+						</div>
+					</div>
+						<div class="modal-footer-center">
+							<button class="pure-button pure-button-primary" onclick="closeUserDialog();">Find the perfect startup now!</button> 
+						</div>		
+				</div>
+			</div>
+
+		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
+		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>-->
+		
+		<!--Initial Preloaded Iframe for the startup of the week 
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideOriginalIframe" src={{getCurrentSite().url}}></iframe>
+		-->
+
+		<!--Toggling Iframes One and Two / need to set display to alternate with angular showFrameOne/Two()-->
+		<!--<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideInitialFrame()" src="https://www.thalmic.com/en/myo/"></iframe>-->
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="originalFrameHidden" src="https://zerocater.com"></iframe>
+
+		<!--<iframe class="frameTwo website-frame" ng-model-instant ng-hide="hideInitialFrame()" src="https://zerocater.com/"></iframe>-->
+
+		<iframe class="frameOne website-frame" ng-model-instant ng-hide="frameOne.hidden" src={{frameOne.url}}></iframe>
+		<iframe class="frameTwo website-frame" ng-model-instant ng-hide="frameTwo.hidden" src={{frameTwo.url}}></iframe>
+
+<!--
+		<iframe class="frameOne website-frame" ng-hide={{myValue}} src={{getCurrentSite().url}}></iframe>
+		<iframe class="frameOne website-frame" ng-hide={{yourValue}} src="http://rjvir.com"></iframe>
+
+		<iframe class="frameOne" src={{getIframeOne()}}></iframe>
+		<iframe class="frameTwo" src={{getIframeTwo()}}></iframe>
+
+		<iframe class="frameOne" ng-model-instant src={{iframeOne}}></iframe>
+		<iframe class="frameTwo" ng-model-instant src={{iframeTwo}}></iframe>
+-->
+	</div>
+<script>
+	function hideToast(){
+		var alert = document.getElementById("toast");
+		alert.style.opacity = 0;
+	};
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28523753-5', 'hackmatch.com');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
