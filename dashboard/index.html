@@ -47,56 +47,17 @@
 </body>
 	<div ng-app="" ng-controller="hackmatch" ng-enter="nextSite()" tabindex="0">
 		<div class="top-bar">
-			<button class="pure-button" ng-click="nextSite()">
-				NEXT
-			</button>
-			<button class="pure-button pure-button-primary" ng-click="expressedInterest()">
-				HELL YEAH
-			</button>
 			<input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="userEmail" ng-model-instant placeholder="User Email">
 			<button class="pure-button pure-button-primary" ng-click="pullStartupsByEmail()">
 				Search
 			</button>
 		</div>
 
-		<div id="windowTitleDialog" class="my-modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
-			<div class="modal-content">
-				<!--<h2>Want to work at the next ______?</h2>-->
-				<div class="modal-header">
-					<a href="#" class="close" data-dismiss="modal">&times;</a>
-					<h3>HackMatch</h3>
-				</div>
-
-				<h2>Want to work at an awesome startup?</h2>
-
-				<h3>It&#39;s simple.</h3>
-
-				<!--<h4>1.Leave your email and a link that best represents you (personal website, github, linkedin)</h4>-->
-
-				<ul class="hows">
-					<li class="how">
-						<h3>Let us know which startups you&#39;re interested in.</h3>
-						<p class="description">We've put together a curated list of the top startups in the country. Click through and let us know which startups you&#39;re interested in. All you have to do is hit Hell yeah!</p>
-					</li>
-					<li class="how">
-						<h3>HackMatch will hook you up!</h3> 
-						<p class="description">Shortly, you&#39;ll receive an email from your very own HackMatch agent. Your agent will introduce you to startups, help prepare you for interviews, and even help you figure out housing once you've signed an offer.</p>
-					</li>
-				</ul>
-
-				<h2>
-					We do everything except interview for you!
-				</h2>
-				<div class="modal-footer-center">
-					<button class="pure-button pure-button-primary center" onclick="closeDialog();">Find the perfect startup now!</button> 
-				</div>		
-			</div>
-		</div>
 		<!--show companies-->
 		<ul class="unstyled">
 			<li ng-repeat="startup in userStartups">
 				<input type="checkbox" ng-model="startup">
-				<span class="">{{startup}}</span>
+				<span ng-model-instant class="">{{startup}}</span>
 	        </li>
         </ul>
 

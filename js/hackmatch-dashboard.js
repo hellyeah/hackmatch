@@ -52,10 +52,11 @@ function hackmatch($scope, angularFire) {
 
 		query.find({
 		  success: function(results) {
-		    alert("Successfully retrieved " + results.length + " scores.");
+		    alert("Successfully retrieved " + results.length + " startups.");
 		    // Do something with the returned Parse.Object values
 		    $scope.userStartups = results;
-		    console.log($scope.userStartups)
+		    console.log($scope.userStartups);
+		    $scope.$apply();
 		  },
 		  error: function(error) {
 		    alert("Error: " + error.code + " " + error.message);
