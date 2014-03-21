@@ -10,7 +10,7 @@ function hackmatch($scope, angularFire) {
 
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
 
-    $('#windowTitleDialog').modal('show');
+    //$('#windowTitleDialog').modal('show');
     
     //Initializing variables
     $scope.sites = [];
@@ -40,6 +40,28 @@ function hackmatch($scope, angularFire) {
    	
    	$scope.frameTwo.hidden = true; 
    	$scope.frameTwo.url = "https://www.thalmic.com/en/myo/";
+
+   	$scope.userStartups;
+
+   	$scope.pullStartupsByEmail = function () {
+   		console.log($scope.userEmail);
+   		var TestSites = Parse.Object.extend("interest");
+		var query = new Parse.Query(TestSites);
+		query.limit(1000);
+		query.equalTo("contactEmail", $scope.userEmail)
+
+		query.find({
+		  success: function(results) {
+		    alert("Successfully retrieved " + results.length + " scores.");
+		    // Do something with the returned Parse.Object values
+		    $scope.userStartups = results;
+		    console.log($scope.userStartups)
+		  },
+		  error: function(error) {
+		    alert("Error: " + error.code + " " + error.message);
+		  }
+		});
+   	}
 
 
     //[BIND MODEL HERE]
