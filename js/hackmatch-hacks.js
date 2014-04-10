@@ -1,11 +1,14 @@
-var app = angular.module("HackMatch", ["firebase", "ui.keypress"]);
+var app = angular.module("hackMatch", ["firebase", "ui.keypress"]);
 //angular.module('ui.keypress',[]).
 
 function hackmatch($scope, angularFire) {
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
     
     //Initializing variables
-    $scope.hack = "blah";
+    $scope.index = 0;
+    $scope.hack = function () {
+        return hacks[$scope.index];
+    }
     $scope.hacks = [];
     //have to preload so that everything works while I'm waiting for Parse
     $scope.hacks[0] = {
@@ -17,7 +20,7 @@ function hackmatch($scope, angularFire) {
         tags: ["iOS", "hardware", "audio engineering", "objective-c"],
         url: "http://vulseapp.com/",
         github: "https://github.com/gailees/hackmatch",
-        description: "A multi-touch effects processor for guitar. Built in 36 hours at MHacks 2013. Currently under further development. Coming to iOS App Store soon!"
+        description: "A multi-touch effects processor for guitar. Built in 36 hours at Mhacks 2013. Currently under further development. Coming to iOS App Store soon!"
     };
     $scope.hacks[1] = {    
         title: "Oculus Quidditch", 
@@ -33,8 +36,6 @@ function hackmatch($scope, angularFire) {
     $scope.user = {
         email: ""
     }
-
-    $scope.currentSite = 1;
 
     $scope.qs = (function(a) {
         if (a == "") return {};
@@ -59,11 +60,13 @@ function hackmatch($scope, angularFire) {
         }
     }
 
-    $scope.addStartups = function (currentStartups, newStartups) {
-        $scope.sites = currentStartups.concat(newStartups);
+    /*
+    $scope.addHacks = function (currentHacks, newHacks) {
+        $scope.hacks = currentHacks.concat(newHacks);
     }
+    */
 
-    $scope.loadStartupSites = function () {
+    $scope.loadHacks = function () {
         var TestSites = Parse.Object.extend("hacks");
         var query = new Parse.Query(TestSites);
         query.limit(1000);
@@ -71,11 +74,11 @@ function hackmatch($scope, angularFire) {
         query.descending("updatedAt");
           query.find({
             success: function(results) {
-                mixpanel.track("Loaded Hacks");
+                mixpanel.track("Loaded hacks");
                 for (var i = 0; i < results.length; i++) {
                     //console.log(results[i].get('contactEmail') + results[i].get('url'));
                     //$scope.sites.push(results[i]);
-                    $scope.hacks[i+3] = {    
+                    $scope.hacks[i+2] = {
                         title: results[i].get('title'), 
                         media: results[i].get('media'),
                         tags: results[i].get('tags'),
@@ -85,7 +88,7 @@ function hackmatch($scope, angularFire) {
                     };
                 }
                 //setting currentSite to start at a random point
-                $scope.currentSite = Math.floor((Math.random()*results.length));
+                //$scope.currentSite = Math.floor((Math.random()*results.length));
             },
             error: function(error) {
               alert("Error: " + error.code + " " + error.message);
@@ -93,31 +96,23 @@ function hackmatch($scope, angularFire) {
           });
     }
 
-    $scope.loadStartupSites();
+    $scope.loadHacks();
 
-    $scope.getSites = function () {
+    $scope.getHacks = function () {
         return _.toArray($scope.hacks);
     }
 
-    $scope.getCurrentSite = function () {
-        //console.log($scope.getSiteAtIndex($scope.currentSite))
-        return $scope.getSiteAtIndex($scope.currentSite);
-        //return $scope.getSiteAtIndex(index);
-    };
-
-    $scope.getSiteAtIndex = function (n) {
-        return $scope.getSites()[n];
-    }
-
-    $scope.nextSite = function () {
-        mixpanel.track("Next");
+    $scope.nextHack = function () {
+        mixpanel.track("Next hack");
         console.log('Next clicked');
         $scope.numberOfNext++;
+        $scope.index++;
 
-        var TestObject = Parse.Object.extend("hacks");
-        var testObject = new TestObject();
+        //was manually adding hacks here
+        //var TestObject = Parse.Object.extend("hacks");
+        //var testObject = new TestObject();
         //testObject = $scope.hacks[0];
-        testObject.save($scope.hacks[1]);
+        //testObject.save($scope.hacks[1]);
     }
 
 
@@ -127,22 +122,19 @@ function hackmatch($scope, angularFire) {
         //console.log($scope.qs["tags"]);
         if ($scope.user.email=="") {
             //$('#userInfo').modal('show');
+            //ask for email
         }
         else {
             mixpanel.track("Interest");
             console.log('Interested in: ');
-            console.log($scope.getCurrentSite().url)
-            console.log('startup number: ' + $scope.currentSite);
-            $scope.interested($scope.getCurrentSite(), $scope.user);
-            $scope.nextSite();
+            console.log($scope.hack().url);
+            console.log('hack number: ' + $scope.index);
+            $scope.interested($scope.hack(), $scope.user);
+            $scope.nextHack();
         }
     }
 
-    $scope.saveInterest = function (startup) {
-        console.log('saved interest');
-    }
-
-    $scope.interested = function (startup, user) {
+    $scope.interested = function (hack, user) {
         //console.log("Interested Info")
         //console.log($scope.siteEmail);
         //console.log($scope.siteUrl);
@@ -154,20 +146,21 @@ function hackmatch($scope, angularFire) {
         //userEmail
         //site.save(null, {
         //  success: function(site) {
-        //**NEED to just find a way to update the interestingStartups column of the original testSites object so I can just addunique
+        //**NEED to just find a way to update the interestinghacks column of the original testSites object so I can just addunique
         var Interest = Parse.Object.extend("interest");
         var interest = new Interest();
-        //site.addUnique("interestingStartups", $scope.getCurrentSite.email);
+        //site.addUnique("interestinghacks", $scope.getCurrentSite.email);
         interest.save({
             contactEmail: user.email,
-            url: user.url,
-            interestingStartups: startup.email,
-            startupURL: startup.url,
+            //url: user.url,
+            //interestingHacks: hack.email,
+            hackURL: hack.url,
             //resumeURL: $scope.resumeURL,
             //year: $scope.year
         },
         {
             success: function(object) {
+                /*
                 Parse.Cloud.run("isAlreadyUser", {contactEmail: user.email}, {
                     success: function (object) {
                         console.log('success checked:' + object);
@@ -176,9 +169,10 @@ function hackmatch($scope, angularFire) {
                         console.log('error onboarding');
                     }
                 });
+                */
                 mixpanel.track("Expressed Interest");
                 console.log('Expressed Interest Success');
-                save();
+                saveToast();
                 //$scope.nextSite();
                 //$scope.getCurrentSite();
             },
@@ -187,12 +181,6 @@ function hackmatch($scope, angularFire) {
             }
         });
     }
-
-/*
-    $scope.getNextSite = function () {
-        return $scope.getSites()[$scope.currentSite + 1];
-    };
-*/
 
     //FILTER Functions
     $scope.openFilter = function () {
@@ -227,24 +215,17 @@ function hackmatch($scope, angularFire) {
         intervalCounter = setTimeout("hideToast()", 1000);
     }
 
-    function save(){
-        //maybe do _startupname_ saved
-        //lines = lines.replace("http://","")
-        //lines = lines.replace("www.", "") # May replace some false positives ('www.com')
-        //lines.replace(".com", "") 
-        //lines.replace(".co", "") 
-        //lines.replace(".io", "") 
-        //urls = [url.split('/')[0] for url in lines.split()]
-        drawToast("Startup Saved");
+    function saveToast(){
+        drawToast("hack Saved");
     }
 
     //**WEIRD SHIT**//
     //add to firebase for hackers sites
-    $scope.addSite = function () {
+    $scope.addHack = function () {
         var Site = Parse.Object.extend("testSites");
         var site = new Site();
         $scope.user.email;
-        $scope.user.url;
+        //$scope.user.url;
         //$scope.toggle();
         //**Force this upon arrival to the site
         //$scope.user = {email: $scope.siteEmail, url: $scope.siteUrl};

@@ -49,7 +49,7 @@
         <div class="top-bar">
             <div class="logo">
             </div>
-            <button class="pure-button" ng-click="nextSite()">
+            <button class="pure-button" ng-click="nextHack()">
                 NEXT
             </button>
             <button class="pure-button pure-button-primary" ng-click="expressedInterest()">
@@ -60,22 +60,24 @@
         </div>
         <div class="hack">
             <div ng-model="hack" class="title">
-                {{hack}}
-                Oculus Quidditch
+                {{hack().title}}
             </div>
             <div class="media center">
-                <iframe width="560" height="315" src="http://www.youtube.com/embed/8I2tAC7BR20?rel=0" frameborder="0" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="{{hack().media.video}}" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="details center">
                 <div class="tags">
-                    oculus, unity, c#
+                    {{hack().tags}}
+                    <!--oculus, unity, c#, mhacks-->
                 </div>
                 <div class="description">
-                    Together we made a broom flight simulator straight from the Harry Potter Universe. Combining the Oculus Rift and Nintendo Wiimote technologies, we crafted an immersive experience unlike any other. The controls are the highlight of this program, as they mimic the movement of an actual flying broomstick. In it, players fly around iconic Harry Potter landmarks such as the Quidditch Arena, the Forbidden Forest, Hogwarts, and more. The innovation reflected in this game helps to usher in a new era of realistic gaming and motion control.
+                    {{hack().description}}
                 </div>
                 <div class="url">
+                    {{hack().url}}
                 </div>
                 <div class="github">
+                    {{hack().github}}
                 </div>
             </div>
         </div>
