@@ -1,0 +1,32 @@
+.logo {
+    background-image: url("../img/hackmatch-3-no-wordmark.png");
+    background-size: cover;
+    -moz-background-size: cover;  /* Firefox 3.6 */
+    background-position: center;  /* Internet Explorer 7/8 */
+    margin: 10px;
+    height: 50px;
+    width: 100px;
+}
+
+.options {
+    margin: 10px;
+    float: right;
+}
+
+.hack {
+    height: 100%;
+    width: 100%;
+    background-color: #0078e7;
+    padding-top: 20px;
+}
+
+.media {
+    height: 315px;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.footer {
+    background-color: black;
+}
+

@@ -32,4 +32,22 @@
 	.website-frame {
 		width: 100% !important;
 	}
+
+	.pure-button {
+		height: 80px;
+		width: 40%;
+	}
+	.blah {
+		width: 100%;
+		min-width: 480px;
+	}
+	.modal {
+		max-width: 80%;
+	}
+	.signup {
+		width: 60%;
+	}
+	.frameOne {
+		max-width: 100%;
+	}
 }

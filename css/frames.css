@@ -17,26 +17,6 @@
     z-index: 1;
 }
 
-@media (max-width: 600px) {
-	.pure-button {
-		height: 80px;
-		width: 40%;
-	}
-	.blah {
-		width: 100%;
-		min-width: 480px;
-	}
-	.modal {
-		max-width: 80%;
-	}
-	.signup {
-		width: 60%;
-	}
-	.frameOne {
-		max-width: 100%;
-	}
-}
-
 iframe {
     /*position: absolute;*/
     width: 100%; 
@@ -47,13 +27,12 @@ iframe {
     padding: 0;
 }
 
-body {
-    background: #eee;
-    text-align: center;
-    /*padding: 0 25px;*/
-    width: 100%;
+.full-frame {
+    /*position: absolute;*/
+    width: 100%; 
     height: 100%;
+    /*overflow: hidden;*/
+    border: none;
     margin: 0;
     padding: 0;
-    /*overflow: hidden;*/
 }
