@@ -9,12 +9,12 @@
   <!-- Show this link in Google's universal navigation for all users -->
   <Extension id="navLink" type="link">
     <Name>HelloWorld</Name>
-    <Url>http://_example.com_/home.php?from=google&domain=${DOMAIN_NAME}</Url>
+    <Url>http://hackmatch.com/</Url>
   </Extension>
 
   <!-- Declare our OpenID realm so our app is white listed -->
   <Extension id="realm" type="openIdRealm">
-    <Url>http://_example.com_</Url>
+    <Url>http://hackmatch.com</Url>
   </Extension>
 
 <!-- EXTRACTOR -->
@@ -35,7 +35,7 @@
 
 <Extension id="HelloWorldGadget" type="gadget">
   <Name>Hello World Gmail contextual gadget</Name>
-  <Url>_http://example.com/gadgets/hello_world_gadget.xml_</Url>
+  <Url>http://hackmatch.com/google/fuckgoogle.xml_</Url>
   <Container name="mail"/>
   <!-- Uncomment this to enable Caja. -->
   <!-- <Param name="caja" value="enabled"/> -->

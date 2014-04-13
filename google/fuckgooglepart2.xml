@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OpenCOBData id="extractorID">
-  <ExtractorSpec platform="gmail" language="languageCode">
-    <!-- Set up a regexp to match content. -->
-    <Search input_type="text">
-      <!-- input_fields - a comma-separated list of
-       email parts to look in.
-       Supported values: from_email, to_email, cc_email, bcc_email,
-       date_sent, date_received, subject, body, id, list_id, list_unsubscribe.
-       Default: subject,body. -->
-      <Pattern input_fields="emailPart,emailPart...">
-        <!-- In yourRegularExpression, include one or more named
-         sub-patterns in angle brackets which identify substrings that
-         can be referred to in @outputSource below.
-         The regular expression can also contain ?M=objectType
-         to refer to a <DataObject> in the same file. -->
-        <![CDATA[(yourRegularExpression)]]>
+<OpenCOBData id="USStockTicker">
+  <AuthorInfo
+    description="Extracts US stock tickers from emails."
+    author="Avi Flambards" />
+  <ExtractorSpec id="USStockTickerExtractor" platform="gmail" language="en">
+    <Search>
+      <Pattern input_fields="subject,body">
+        <![CDATA[(?x)
+        ##### This expression finds full declarations of AMEX tickers.
+        ##### They are of the form 'AMEX:AIM'
+        #####
+        (\b(?P<exchange>AMEX)(?::\ ?)(?P<ticker>(?M=AMEXTickerType))\b)
+
+        #####
+        ##### This expression finds full declarations of NASDAQ tickers.
+        ##### They are of the form 'NASD:MSFT' and 'NASDAQ: MSFT'
+        #####
+        |(\b(?P<exchange>NYSE)(?::\ ?)(?P<ticker>(?M=NYSETickerType))\b)
+
+       #####
+       ##### This expression will find standalone tickers like 'MSFT' if it is
+       ##### unambiguously a ticker and in all caps.
+       #####
+       |(\b(?P<ticker>(?M=USFilteredTickerType))(?:[\s\)\],]))
+       (?-x)]]>
       </Pattern>
     </Search>
-    <!-- Set up the output. -->
     <Response platform="gmail" format="cardgadget">
-      <!-- outputSource specifies what to return.
-       To return part of the string that matched the expression,
-       use a sub-pattern name specified in the <Pattern>.
-       To return an entire email field, use a built-in
-       variable: __SUBJECT__, __BODY__, __DATE_SENT__,
-       __DATE_RECEIVED, __FROM_ADDRESS__, __TO_ADDRESS__,
-       __CC_EMAIL__, __BCC_EMAIL__, __MESSAGE_ID__, __LIST_ID__,
-       or __LIST_UNSUBSCRIBE__. In this case, you don't need to use
-       the <Pattern> tag. -->
-      <Output name="outputFieldName">{@outputSource}!</Output>
+      <Output name="Title">Stock Ticker</Output>
+      <Output name="LinkText1">{@ticker}</Output>
+      <Output name="LinkUrl1">http://finance.google.com/finance?q={@ticker}</Output>
     </Response>
+
   </ExtractorSpec>
 
-  <!-- Optional: a list of literal strings to look for. Incorporate this
-   into the regular expression above by referring to objectType. -->
-  <DataObject id="dataObjectID" type="objectType">
-    <QueryName value="literal"/>
+  <DataObject id="AllUSStockTickersFiltered" type="USFilteredTickerType">
+    <QueryName value="AAC"/>
+    <QueryName value="ABL"/>
+    <QueryName value="ABP"/>
+    <QueryName value="ACU"/>
+    <QueryName value="ZTR"/>
   </DataObject>
 
-  <!-- Repeat to define more string repositories. -->
-  <DataObject></DataObject>
+  <!-- Repeat for the other types referred to in the regexp:
+   AMEXTickerType, etc. -->
 
 </OpenCOBData>
