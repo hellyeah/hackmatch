@@ -6,20 +6,6 @@
   <Description>A simple Hello World application for testing
   Gmail contextual gadgets</Description>
 
-  <!-- Show this link in Google's universal navigation for all users -->
-  <Extension id="navLink" type="link">
-    <Name>HelloWorld</Name>
-    <Url>http://hackmatch.com</Url>
-    <!--
-    <Url>http://hackmatch.com/</Url>
-    -->
-  </Extension>
-
-  <!-- Declare our OpenID realm so our app is white listed -->
-  <Extension id="realm" type="openIdRealm">
-    <Url>http://hackmatch.com</Url>
-  </Extension>
-
 <!-- EXTRACTOR -->
 
 <Extension id="HelloWorldExtractor" type="contextExtractor">
