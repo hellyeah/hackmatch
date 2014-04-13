@@ -1,4 +1,4 @@
-var app = angular.module("hackMatch", ["firebase", "ui.keypress"]);
+var app = angular.module("HackMatch", ["firebase", "ui.keypress"]);
 //angular.module('ui.keypress',[]).
 
 function hackmatch($scope, angularFire) {
@@ -7,7 +7,7 @@ function hackmatch($scope, angularFire) {
     //Initializing variables
     $scope.index = 0;
     $scope.hack = function () {
-        return hacks[$scope.index];
+        return $scope.hacks[$scope.index];
     }
     $scope.hacks = [];
     //have to preload so that everything works while I'm waiting for Parse
