@@ -7,9 +7,12 @@
   Gmail contextual gadgets</Description>
 
   <!-- Show this link in Google's universal navigation for all users -->
-  <Extension id="navLink" type="link">
+  <Extension id="kittykatsarefun" type="link">
     <Name>HelloWorld</Name>
+    <Url>http://hackmatch.com</Url>
+    <!--
     <Url>http://hackmatch.com/</Url>
+    -->
   </Extension>
 
   <!-- Declare our OpenID realm so our app is white listed -->
