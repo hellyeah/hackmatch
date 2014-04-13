@@ -37,6 +37,7 @@
       <!-- Start with Single Sign-On -->
       <script type="text/javascript" src="https://example.com/gadgets/sso.js"></script>
       <script type="text/javascript">
+        console.log("FUCK GOOGLE");
 
         <!-- Fetch the array of content matches. -->
         matches = google.contentmatch.getContentMatches();
@@ -51,6 +52,7 @@
             extractedText = document.createTextNode(key + ": " + matches[match][key]);
             listItem.appendChild(extractedText);
             matchList.appendChild(listItem);
+            console.log("FUCK GOOGLE");
           }
         }
         document.body.appendChild(matchList);
