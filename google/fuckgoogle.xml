@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ApplicationManifest xmlns="http://schemas.google.com/ApplicationManifest/2009">
+
+  <!-- Name and description pulled from message bundles -->
+  <Name>HelloWorld</Name>
+  <Description>A simple Hello World application for testing
+  Gmail contextual gadgets</Description>
+
+  <!-- Show this link in Google's universal navigation for all users -->
+  <Extension id="navLink" type="link">
+    <Name>HelloWorld</Name>
+    <Url>http://_example.com_/home.php?from=google&domain=${DOMAIN_NAME}</Url>
+  </Extension>
+
+  <!-- Declare our OpenID realm so our app is white listed -->
+  <Extension id="realm" type="openIdRealm">
+    <Url>http://_example.com_</Url>
+  </Extension>
+
+<!-- EXTRACTOR -->
+
+<Extension id="HelloWorldExtractor" type="contextExtractor">
+  <Name>Hello World</Name>
+  <Url>google.com:HelloWorld</Url>
+  <!-- Uncomment this Param to apply a filter to the extractor's
+  default output. The example regexp below makes the match case sensitive.
+  <Param name="hello" value="H[a-z]* W[a-z]*"/> -->
+  <Triggers ref="HelloWorldGadget"/>
+  <Scope ref="emailSubject"/>
+  <Scope ref="emailBody"/>
+  <Container name="mail"/>
+</Extension>
+
+<!-- GADGET -->
+
+<Extension id="HelloWorldGadget" type="gadget">
+  <Name>Hello World Gmail contextual gadget</Name>
+  <Url>_http://example.com/gadgets/hello_world_gadget.xml_</Url>
+  <Container name="mail"/>
+  <!-- Uncomment this to enable Caja. -->
+  <!-- <Param name="caja" value="enabled"/> -->
+</Extension>
+
+<!-- SCOPE -->
+
+<Scope id="emailSubject">
+  <Url>tag:google.com,2010:auth/contextual/extractor/SUBJECT</Url>
+  <Reason>This application searches the Subject: line of each email
+  for the text "Hello World."</Reason>
+</Scope>
+
+<Scope id="emailBody">
+  <Url>tag:google.com,2010:auth/contextual/extractor/BODY</Url>
+  <Reason>This application searches the message body of each email
+  for the text "Hello World."</Reason>
+</Scope>
+
+</ApplicationManifest>
