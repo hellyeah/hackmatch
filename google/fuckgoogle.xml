@@ -24,7 +24,7 @@
 
 <Extension id="HelloWorldExtractor" type="contextExtractor">
   <Name>Hello World</Name>
-  <Url>google.com:USStockTicker</Url>
+  <Url>google.com:HelloWorld</Url>
   <!-- Uncomment this Param to apply a filter to the extractor's
   default output. The example regexp below makes the match case sensitive.
   <Param name="hello" value="H[a-z]* W[a-z]*"/> -->
