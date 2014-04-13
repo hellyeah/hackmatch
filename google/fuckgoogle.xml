@@ -7,7 +7,7 @@
   Gmail contextual gadgets</Description>
 
   <!-- Show this link in Google's universal navigation for all users -->
-  <Extension id="kittykatsarefun" type="link">
+  <Extension id="navLink" type="link">
     <Name>HelloWorld</Name>
     <Url>http://hackmatch.com</Url>
     <!--
