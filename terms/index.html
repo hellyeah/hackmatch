@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+  </head>
+  <body>
+    <div>
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <div class="terms">      
+        <h1>Terms</h1>
+        <p>Charge: 15% of placed full-time hacker's first year's annual salary</p>
+        <p>Temporary Placement Exception: If a hacker does not stay for more than 90 days, you get a full refund</p>
+        <p>I won't waste your time Guarantee: If I introduce you to a dozen placements and there isn't even one you want to give an offer to, then your next placement is free.
+        <p>Pay within 30 days of the hacker signing an offer</p>
+        <h2>_Company_ {{yourName}}!</h2>
+        <h2>HackMatch {{yourName}}!</h2>
+      </div>
+    </div>
+    <h2>Todo</h2>
+    <div ng-controller="TodoCtrl">
+      <span>{{remaining()}} of {{todos.length}} remaining</span>
+      [ <a href="" ng-click="archive()">archive</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="todo in todos">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+  </body>
+</html>
