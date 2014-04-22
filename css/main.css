@@ -4,15 +4,31 @@
 	width: 45%;
 	vertical-align: top;
 }
+.how:first-child {
+  padding-right: 10px;
+}
+.how:last-child {
+  padding-left: 10px;
+}
 
 .hows {
 	margin: 0;
-	padding: 0;
+	padding: 35px 10px 40px;
 }
 
-.description {
-	margin-left: 15px;
-	margin-right: 15px;
+.hows h4 {
+        font-weight: 600;
+}
+
+ul.description {
+	margin-left: 0;
+	margin-right: 0;
+        list-style: none;
+        padding-left: 0;
+}
+
+ul.description li {
+        margin-bottom: 6px;
 }
 
 .center {
