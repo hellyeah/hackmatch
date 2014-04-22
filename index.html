@@ -4,27 +4,25 @@
 
 	<title>HackMatch</title>
 
-	<!-- inclue AngularJS, UnderscoreJS, and JQuery-->
+	<!-- include AngularJS, UnderscoreJS, and JQuery-->
 	<script src="js/angular.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
-	<!-- inclue Firebase JS SDK-->
+	<!-- include Firebase JS SDK-->
 	<script src='https://cdn.firebase.com/v0/firebase.js'></script>
-	<script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script> 
-	<!-- inclue Parse JS SDK-->
+	<script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script>
+	<!-- include Parse JS SDK-->
 	<script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
 	<script text="text/javascript" src="js/ui-utils/modules/keypress/keypress.js"></script>
-	<!-- inclue Local JS-->
+	<!-- include Bootstrap -->
+	<script src="js/bootstrap.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- include Local JS-->
 	<script type="text/javascript" src="js/todo.js"></script>
 	<script type="text/javascript" src="js/hackmatch.js"></script>
 	<script type="text/javascript" src="js/modal.js"></script>
-	<!--include Bootstrap and PureCSS-->
-	<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
-	<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
-	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
-	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
-	<!-- inclue Local CSS-->
+	<!-- include Local CSS-->
+	<link rel="stylesheet" href="css/proxima-nova.css">
 	<link rel="stylesheet" href="css/todo.css">
 	<link rel="stylesheet" href="css/frames.css">
 	<link rel="stylesheet" href="css/modal.css">
@@ -49,11 +47,11 @@
 
 		<div class="top-bar">
 
-			<button class="pure-button" ng-click="nextSite()">
+			<button class="btn" ng-click="nextSite()">
 				NEXT
 			</button>
 
-			<button class="pure-button pure-button-primary" ng-click="expressedInterest()">
+			<button class="btn btn-primary" ng-click="expressedInterest()">
 				HELL YEAH
 			</button>
 
@@ -79,17 +77,15 @@
 							<p class="description">We've put together a curated list of the top startups in the country. Click through and let us know which startups you&#39;re interested in. All you have to do is hit Hell yeah!</p>
 						</li>
 						<li class="how">
-							<h3>HackMatch will hook you up!</h3> 
+							<h3>HackMatch will hook you up!</h3>
 							<p class="description">Shortly, you&#39;ll receive an email from your very own HackMatch agent. Your agent will introduce you to startups, help prepare you for interviews, and even help you figure out housing once you've signed an offer.</p>
 						</li>
 					</ul>
 
-					<h2>
-						We do everything except interview for you!
-					</h2>
+					<h2>We do everything except interview for you!</h2>
 					<div class="modal-footer-center">
-						<button class="pure-button pure-button-primary center" onclick="closeDialog();">Find the perfect startup now!</button> 
-					</div>		
+						<button class="btn btn-primary center" onclick="closeDialog();">Find the perfect startup now!</button>
+					</div>
 				</div>
 			</div>
 
@@ -106,15 +102,15 @@
 						</div>
 					</div>
 						<div class="modal-footer-center">
-							<button class="pure-button pure-button-primary" onclick="closeUserDialog();">Find the perfect startup now!</button> 
-						</div>		
+						  <button class="btn btn-primary" onclick="closeUserDialog();">Find the perfect startup now!</button>
+						</div>
 				</div>
 			</div>
 
 		<!--<div ng-repeat="msg in sites"><em>{{msg.url}}</em>: {{msg.email}}</div>
 		<h2 ng-model="site" ng-model-instant>Current site: {{getCurrentSite().url}}</h2>-->
-		
-		<!--Initial Preloaded Iframe for the startup of the week 
+
+		<!--Initial Preloaded Iframe for the startup of the week
 		<iframe class="frameOne website-frame" ng-model-instant ng-hide="hideOriginalIframe" src={{getCurrentSite().url}}></iframe>
 		-->
 
