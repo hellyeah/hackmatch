@@ -11,7 +11,7 @@ function hackmatch($scope, angularFire) {
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
 
     $('#windowTitleDialog').modal('show');
-    
+
     //Initializing variables
     $scope.sites = [];
     //have to preload so that everything works while I'm waiting for Parse
@@ -37,8 +37,8 @@ function hackmatch($scope, angularFire) {
 
    	$scope.frameOne.hidden = true;
    	$scope.frameOne.url = "https://www.watchsend.com/";
-   	
-   	$scope.frameTwo.hidden = true; 
+
+   	$scope.frameTwo.hidden = true;
    	$scope.frameTwo.url = "https://www.thalmic.com/en/myo/";
 
 
@@ -64,7 +64,7 @@ function hackmatch($scope, angularFire) {
 		for (var i=0; i < tags.length; i++) {
 			var checkbox = document.getElementById(tags[i]);
 			if (checkbox) {
-				checkbox.checked=true;			
+				checkbox.checked=true;
 			}
 		}
 	}
@@ -247,20 +247,20 @@ function hackmatch($scope, angularFire) {
 
 	$scope.filter = function() {
 		var filters = document.getElementsByName("filterCheckBox");
-		$scope.addFilters(_.filter(filters, function(tag){ return tag.checked; })); 
+		$scope.addFilters(_.filter(filters, function(tag){ return tag.checked; }));
 	}
 
 	$scope.addFilters = function (filters) {
 		//check if this is the first filter being added
-		//location.search gives ? on 
+		//location.search gives ? on
 		location.search = "?tags=" + _.map(filters, function(tag){ return tag.id; }).join();
 	}
 
 	//Toast Functions
 	function drawToast(message){
-		
+
 		var alert = document.getElementById("toast");
-		
+
 		if (alert == null){
 			var toastHTML = '<div id="toast">' + message + '</div>';
 			document.body.insertAdjacentHTML('beforeEnd', toastHTML);
@@ -268,7 +268,7 @@ function hackmatch($scope, angularFire) {
 		else{
 			alert.style.opacity = .9;
 		}
-		
+
 		intervalCounter = setTimeout("hideToast()", 1000);
 	}
 
@@ -276,9 +276,9 @@ function hackmatch($scope, angularFire) {
 		//maybe do _startupname_ saved
 		//lines = lines.replace("http://","")
     	//lines = lines.replace("www.", "") # May replace some false positives ('www.com')
-    	//lines.replace(".com", "") 
-    	//lines.replace(".co", "") 
-    	//lines.replace(".io", "") 
+    	//lines.replace(".com", "")
+    	//lines.replace(".co", "")
+    	//lines.replace(".io", "")
     	//urls = [url.split('/')[0] for url in lines.split()]
 		drawToast("Startup Saved");
 	}
