@@ -103,16 +103,18 @@
     <div class="modal-content">
       <div class="modal-header">
 	<a href="#" class="close" data-dismiss="modal">&times;</a>
-	<h3>HackMatch</h3>
+	<h3>How do we get in touch with you?</h3>
       </div>
       <div class="modal-body">
 	<div class="divDialogElements">
-	  <input style="margin-bottom: 9px; margin-right: 5px;" class="xlarge" id="xlInput" type="text" ng-model="user.url" placeholder="personal website or github">
-	  <input style="margin-bottom: 9px;" class="xlarge" id="xlInput" type="text" ng-model="user.email" placeholder="email">
+	  <input style="margin: 9px 5px;" class="xlarge form-control"
+                 id="xlInput" type="text" ng-model="user.url" placeholder="personal website or github">
+	  <input style="margin: 9px 5px;" class="xlarge form-control"
+                 id="xlInput" type="text" ng-model="user.email" placeholder="email">
 	</div>
       </div>
       <div class="modal-footer-center">
-	<button class="btn btn-primary" onclick="closeUserDialog();">Find the perfect startup now!</button>
+	<button class="btn btn-primary" onclick="closeUserDialog();">Save and Continue</button>
       </div>
     </div>
   </div>
