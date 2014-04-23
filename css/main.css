@@ -1,3 +1,26 @@
+html, body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background: #eee;
+    text-align: center;
+    font-family: proxima-nova, Gotham, sans-serif;
+    /*overflow: hidden;*/
+}
+
+body > .ng-scope {
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    width: 100%;
+}
+
 .how {
 	text-align: center;
 	display: inline-block;
@@ -36,14 +59,3 @@ ul.description li {
     margin-right: auto;
 }
 
-body {
-    background: #eee;
-    text-align: center;
-    /*padding: 0 25px;*/
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: proxima-nova, Gotham, sans-serif;
-    /*overflow: hidden;*/
-}
