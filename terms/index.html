@@ -3,25 +3,43 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
     <script src="todo.js"></script>
-    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="/css/proxima-nova.css">
+    <link rel="stylesheet" href="/css/terms.css">
   </head>
   <body>
-    <div>
+
+    <div class="logo">
+      HackMatch Terms & Conditions
+    </div>
+
+    <div class="doc">
       <label>Name:</label>
       <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <div class="terms">      
+      <div class="terms">
         <h1>Terms</h1>
-        <p>Charge: 15% of placed full-time hacker's first year's annual salary</p>
-        <p>Temporary Placement Exception: If a hacker does not stay for more than 90 days, you get a full refund</p>
-        <p>I won't waste your time Guarantee: If I introduce you to a dozen placements and there isn't even one you want to give an offer to, then your next placement is free.
-        <p>Pay within 30 days of the hacker signing an offer</p>
+        <p>
+          <strong>Charge:</strong>
+          15% of placed full-time hacker's first year's annual salary
+        </p>
+        <p>
+          <strong>Temporary Placement Exception:</strong>
+          If a hacker does not stay for more than 90 days, you get a full refund.
+        </p>
+        <p>
+          <strong>I won't waste your time Guarantee:</strong>
+          If I introduce you to a dozen placements and there isn't even one you want to give an offer to, then your next placement is free.
+        </p>
+        <p>
+          <strong>Pay:</strong>
+          Pay within 30 days of the hacker signing an offer.
+        </p>
         <h2>_Company_ {{yourName}}!</h2>
         <h2>HackMatch {{yourName}}!</h2>
       </div>
     </div>
-    <h2>Todo</h2>
-    <div ng-controller="TodoCtrl">
+
+    <div class="doc" ng-controller="TodoCtrl">
+      <h1>Todo</h1>
       <span>{{remaining()}} of {{todos.length}} remaining</span>
       [ <a href="" ng-click="archive()">archive</a> ]
       <ul class="unstyled">
@@ -36,5 +54,6 @@
         <input class="btn-primary" type="submit" value="add">
       </form>
     </div>
+
   </body>
 </html>
