@@ -26,6 +26,40 @@ Parse.Cloud.define("averageStars", function(request, response) {
 var Mailgun = require('mailgun');
 Mailgun.initialize('hackmatch.com', 'key-2787lpq0ilh16bhm2hex9ijc88hngq68');
 
+var Mandrill = require('mandrill');
+Mandrill.initialize('_7KXKiKZRDNYQMPe6W3g9g');
+
+var onboardEmail = function (contactEmail) {
+    Mandrill.sendEmail({
+      message: {
+        html: htmlEmail,
+        //text: "Hello World!",
+        subject: "Ready to find the perfect startup?",
+        from_email: "dave@hackmatch.com",
+        from_name: "Dave Fontenot",
+        to: [
+          {
+            email: contactEmail,
+            //maybe do a function that somehow gets their name 
+            //and do an if(we grabbed name) then add name: theirName
+            //name: "Your Name"
+          }
+        ]
+      },
+      async: true
+    },{
+      success: function(httpResponse) {
+        console.log(httpResponse);
+        response.success("Email sent!");
+      },
+      error: function(httpResponse) {
+        console.error(httpResponse);
+        response.error("Uh oh, something went wrong");
+      }
+    });
+}
+
+/*
 var onboardEmail = function (contactEmail) {
 	Mailgun.sendEmail({
 	  to: contactEmail,
@@ -44,13 +78,14 @@ var onboardEmail = function (contactEmail) {
 	  }
 	});
 }
+*/
 
 var isAlreadyUser = function(contactEmail) {
   	var query = new Parse.Query("interest");
 	  query.equalTo("contactEmail", contactEmail);
 	  query.count({
 	    success: function(count) {
-	    	if (count == 1) {
+	    	if (count == 1 || contactEmail == "davidhfontenot@gmail.com") {
 	    		response.success('onboard email sent');
 	    		onboardEmail(contactEmail);
 	    	}
@@ -75,7 +110,7 @@ Parse.Cloud.define("isAlreadyUser", function(request, response) {
 	  query.count({
 	    success: function(count) {
 	    	//should have just put in their email for the first time and it have been saved
-	    	if (count == 1) {
+	    	if (count == 1 || request.params.contactEmail == "davidhfontenot@gmail.com") {
 	    		response.success('onboard email sent');
 	    		onboardEmail(request.params.contactEmail);
 	    	}
@@ -92,7 +127,7 @@ Parse.Cloud.define("isAlreadyUser", function(request, response) {
 
 //mailgun
 
-
+//doesnt do anything
 Parse.Cloud.define("onboardEmail", function (request, response) {
 	Mailgun.sendEmail({
 	  to: "davidhfontenot@gmail.com",
