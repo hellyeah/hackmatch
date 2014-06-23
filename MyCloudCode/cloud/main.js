@@ -22,6 +22,26 @@ Parse.Cloud.define("averageStars", function(request, response) {
   });
 });
 
+//company signed terms
+Parse.Cloud.define("signTerms", function(request, response) {
+  var query = new Parse.Query("signedTerms");
+  query.equalTo("movie", request.params.signerName);
+  query.equalTo("movie", request.params.companyWebsite);
+  query.equalTo("movie", request.params.companyEmail);
+  query.find({
+    success: function(results) {
+      var sum = 0;
+      for (var i = 0; i < results.length; ++i) {
+        sum += results[i].get("stars");
+      }
+      response.success(sum / results.length);
+    },
+    error: function() {
+      response.error("movie lookup failed");
+    }
+  });
+});
+
 var Mailgun = require('mailgun');
 Mailgun.initialize('hackmatch.com', 'key-2787lpq0ilh16bhm2hex9ijc88hngq68');
 
