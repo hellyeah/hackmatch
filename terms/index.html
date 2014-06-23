@@ -14,13 +14,6 @@
     </div>
 
     <div class="doc" ng-controller="Terms">
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter your name here">
-      <input type="text" ng-model="company" placeholder="Enter company website here">
-      <input type="text" ng-model="email" placeholder="Enter your email here">
-      <button class="btn btn-primary" ng-click="signUp()">
-        HELL YEAH
-      </button>
       <div class="terms">
         <h1>Terms</h1>
         <p>
@@ -39,27 +32,18 @@
           <strong>Pay:</strong>
           Pay within 30 days of the hacker signing an offer.
         </p>
-        <h2>_Company_ {{yourName}}!</h2>
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" placeholder="Enter your name here">
+        <input type="text" ng-model="company" placeholder="Enter company website here">
+        <input type="text" ng-model="email" placeholder="Enter your email here">
+        <button class="btn btn-primary" ng-click="signUp()">
+          HELL YEAH
+        </button>
+        <h2>_Company_ {{companyName}}!</h2>
         <h2>HackMatch {{yourName}}!</h2>
       </div>
     </div>
 
-    <div class="doc" ng-controller="TodoCtrl">
-      <h1>Todo</h1>
-      <span>{{remaining()}} of {{todos.length}} remaining</span>
-      [ <a href="" ng-click="archive()">archive</a> ]
-      <ul class="unstyled">
-        <li ng-repeat="todo in todos">
-          <input type="checkbox" ng-model="todo.done">
-          <span class="done-{{todo.done}}">{{todo.text}}</span>
-        </li>
-      </ul>
-      <form ng-submit="addTodo()">
-        <input type="text" ng-model="todoText"  size="30"
-               placeholder="add new todo here">
-        <input class="btn-primary" type="submit" value="add">
-      </form>
-    </div>
 
   </body>
 </html>

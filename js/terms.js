@@ -4,7 +4,7 @@ function Terms($scope) {
         {text:'Build an app', done:false}
     ];
 
-    $scope.signUp = {
+    $scope.signUp = function () {
         console.log('blah');
     }
 
