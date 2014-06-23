@@ -1,11 +1,6 @@
 function Terms($scope) {
     Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
 
-    $scope.todos = [
-        {text:'Learn AngularJS', done:false}, 
-        {text:'Build an app', done:false}
-    ];
-
     $scope.signUp = function () {
         console.log('blah')
         Parse.Cloud.run("signTerms", {
@@ -15,6 +10,10 @@ function Terms($scope) {
             }, {
              success: function (object) {
                  console.log('success checked:' + object);
+                 alert("Welcome to HackMatch!")
+                 $scope.signerName = "";
+                 $scope.companyWebsite = "";
+                 $scope.companyEmail = "";
              },
              error: function (error) {
                  console.log('error onboarding');
