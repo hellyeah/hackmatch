@@ -1,4 +1,6 @@
 function Terms($scope) {
+    Parse.initialize("RctpMTJQ1oMw0FYc1pyPfWxaFzdJIh1WVdvGCj6V", "2cbbMkpxIUu0Epj4hOLwww4tFEFLBwNvjhCofW3w");
+
     $scope.todos = [
         {text:'Learn AngularJS', done:false}, 
         {text:'Build an app', done:false}
