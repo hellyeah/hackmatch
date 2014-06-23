@@ -5,7 +5,18 @@ function Terms($scope) {
     ];
 
     $scope.signUp = function () {
-        console.log('blah');
+        Parse.Cloud.run("signTerms", {
+            signerName: $scope.signerName,
+            companyWebsite: $scope.companyWebsite,
+            companyEmail: $scope.companyEmail
+            }, {
+             success: function (object) {
+                 console.log('success checked:' + object);
+             },
+             error: function (error) {
+                 console.log('error onboarding');
+             }
+         });}
     }
 
 }
