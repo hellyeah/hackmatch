@@ -7,6 +7,7 @@ function Terms($scope) {
     ];
 
     $scope.signUp = function () {
+        console.log('blah')
         Parse.Cloud.run("signTerms", {
             signerName: $scope.signerName,
             companyWebsite: $scope.companyWebsite,
