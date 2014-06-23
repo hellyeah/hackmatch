@@ -24,8 +24,19 @@ Parse.Cloud.define("averageStars", function(request, response) {
 
 //company signed terms
 Parse.Cloud.define("signTerms", function(request, response) {
+  var SignedTerms = Parse.Object.extend("SignedTerms");
+  var signedTerms = new SignedTerms();
+  signedTerms.save({
+    signerName: request.params.signerName, 
+    companyWebsite: request.params.companyWebsite,
+    companyEmail: request.params.companyEmail
+  }).then(function(object) {
+    response.success("yay! it worked");
+  });
+  /*
   var SignedTerms = new Parse.Object.extend("SignedTerms");
   var signedTerms = new SignedTerms();
+
   signedTerms.save({
     signerName: request.params.signerName, 
     companyWebsite: request.params.companyWebsite,
@@ -33,6 +44,7 @@ Parse.Cloud.define("signTerms", function(request, response) {
   }).then(function() {
     response.success("It worked!");
   })
+*/
 });
 
 var Mailgun = require('mailgun');
