@@ -16,7 +16,7 @@ function Terms($scope) {
              error: function (error) {
                  console.log('error onboarding');
              }
-         });}
+         });
     }
 
 }
