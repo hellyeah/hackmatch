@@ -43,3 +43,7 @@ body {
 .terms-form {
   margin-top: 25px;
 }
+
+.form-group {
+  margin-bottom: 0;
+}
