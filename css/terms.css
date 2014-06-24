@@ -32,3 +32,10 @@ body {
 	color: grey;
 }
 
+.terms-field {
+  margin: 5px 0;
+}
+
+.terms-button {
+  margin: 5px;
+}
