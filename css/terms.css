@@ -52,3 +52,8 @@ body {
 .container {
   width: 100%;
 }
+
+.red-strikethrough {
+  text-decoration: line-through;
+  color: red;
+}
