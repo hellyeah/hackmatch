@@ -6,6 +6,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
     <script src="todo.js"></script>
     <script src="/js/terms.js"></script>
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/proxima-nova.css">
     <link rel="stylesheet" href="/css/terms.css">
   </head>
@@ -35,8 +37,8 @@
           Pay within 30 days of the hacker signing an offer.
         </p>
         <input type="text" ng-model="signerName" placeholder="Enter your name here"> <br>
-        <input type="text" ng-model="companyWebsite" placeholder="Enter company website here"> <br>
-        <input type="text" ng-model="companyEmail" placeholder="Enter your email here"> <br>
+        <input type="text" ng-model="companyWebsite" placeholder="http://company.com"> <br>
+        <input type="text" ng-model="companyEmail" placeholder="you@company.com"> <br>
         <button class="btn btn-primary" ng-click="signUp()">
           HELL YEAH
         </button>
