@@ -48,3 +48,7 @@ body {
 .form-group {
   margin-bottom: 0;
 }
+
+.container {
+  width: 100%;
+}
