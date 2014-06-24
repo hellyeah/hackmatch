@@ -39,15 +39,21 @@
         <form role="form" class="form-horizontal">
           <div class="form-group"> 
             <label>Name: </label>
-            <input type="text" class="terms-field" ng-model="signerName" placeholder="Full Name"> <br>
+            <div class="col-sm-10">
+              <input type="text" class="terms-field" ng-model="signerName" placeholder="Full Name"> <br>
+            </div>
           </div>
           <div class="form-group"> 
             <label>Company Website: </label>
-            <input type="text" class="terms-field" ng-model="companyWebsite" placeholder="http://company.com"> <br>
+            <div class="col-sm-10">
+              <input type="text" class="terms-field" ng-model="companyWebsite" placeholder="http://company.com"> <br>
+            </div>
           </div>
           <div class="form-group"> 
             <label>Email: </label>
-            <input type="email" class="terms-field" ng-model="companyEmail" placeholder="you@company.com"> <br>
+            <div class="col-sm-10">
+              <input type="email" class="terms-field" ng-model="companyEmail" placeholder="you@company.com"> <br>
+            </div>
           </div>
             <button type="submit" class="btn btn-primary terms-button" ng-click="signUp()">
               HELL YEAH
