@@ -47,6 +47,16 @@ Parse.Cloud.define("signTerms", function(request, response) {
 */
 });
 
+Parse.Cloud.define("addCompany", function(request, response) {
+  var Company = Parse.Object.extend("sponsorSites");
+  var company = new Company();
+  company.save({
+    companyWebsite: request.params.companyWebsite, 
+    companyImage: request.params.companyImage,
+  }).then(function(object) {
+    response.success("yay! it worked");
+  });
+
 var Mailgun = require('mailgun');
 Mailgun.initialize('hackmatch.com', 'key-2787lpq0ilh16bhm2hex9ijc88hngq68');
 

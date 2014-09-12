@@ -58,7 +58,7 @@ function hackmatch($scope, angularFire) {
 			query.containsAll("tags", $scope.qs["tags"].split(","));
 		}
 		else {
-			query.containsAll("tags", ["hackmit"]);
+			query.containsAll("tags", ["pennapps"]);
 		}
 		query.descending("updatedAt");
 		  query.find({
