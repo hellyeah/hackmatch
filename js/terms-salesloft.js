@@ -13,6 +13,11 @@ function Terms($scope) {
             specialTerms: "payment due 30 days after actual start date"
         }).then(function(object) {
             response.success("yay! it worked");
+            console.log('success checked:' + object);
+            alert("Welcome to HackMatch!")
+            $scope.signerName = "";
+            $scope.companyWebsite = "";
+            $scope.companyEmail = "";
         });
     }
 
