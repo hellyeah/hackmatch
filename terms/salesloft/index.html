@@ -1,0 +1,86 @@
+<!doctype html>
+<html ng-app>
+  <head>
+
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/proxima-nova.css">
+    <link rel="stylesheet" href="/css/terms.css">
+
+    <link rel="icon" 
+      type="image/png" 
+      href="http://hackmatch.com/img/hackmatch-twitter.jpg">
+  </head>
+  <body>
+
+    <div class="logo">
+      HackMatch Terms & Conditions
+    </div>
+
+    <div class="doc" ng-controller="Terms">
+      <div class="terms">
+        <p>
+          <strong>Charge:</strong>
+          <span class="red-strikethrough">30%</span>
+          10% of placed full-time hacker's first year's annual salary
+        </p>
+        <p>
+          <strong>Temporary Placement Exception:</strong>
+          If a hacker does not stay for more than 90 days, you get a full refund.
+        </p>
+        <p>
+          <strong>We won't waste your time Guarantee:</strong>
+          If we introduce you to a dozen hackers and there isn't even one you want to give an offer to, then your first placement is free.
+        </p>
+        <p>
+          <strong>Pay:</strong>
+          Pay within 30 days of the hacker's start date. 
+        </p>
+        <form role="form" class="form-horizontal terms-form">
+          <div class="form-group"> 
+            <label class="col-sm-4 control-label">Name: </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" ng-model="signerName" placeholder="Full Name"> <br>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-4 control-label">Company Website: </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" ng-model="companyWebsite" placeholder="http://company.com"> <br>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-4 control-label">Email: </label>
+            <div class="col-sm-4">
+              <input type="email" class="form-control" ng-model="companyEmail" placeholder="you@company.com"> <br>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-4">
+            <button type="submit" class="btn btn-primary terms-button" ng-click="signUp()">
+              HELL YEAH
+            </button>
+            <p>By pressing HELL YEAH, you accept the terms above.</p>
+            </div>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="doc">
+      <p>
+        <strong>To be clear:</strong>
+        You don't pay anything unless you hire someone. If you were already speaking to a hacker we introduce you to, you don't pay anything. 
+      </p> <br>
+      <p>If you need to negotiate any of these terms, simply send us an email: team@hackmatch.com</p><br>
+      <p>We want to make it as easy as possible for you to say HELL YEAH to HackMatch.</p>
+    </div>
+
+    <!-- include Parse JS SDK-->
+    <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="/js/terms-salesloft.js"></script>
+
+  </body>
+</html>

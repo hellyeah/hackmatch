@@ -7,7 +7,8 @@ function Terms($scope) {
             signerName: $scope.signerName,
             companyWebsite: $scope.companyWebsite,
             companyEmail: $scope.companyEmail,
-            fee: "20%"
+            fee: "10%",
+            specialTerms: "payment due 30 days after actual start date"
             }, {
              success: function (object) {
                  console.log('success checked:' + object);
