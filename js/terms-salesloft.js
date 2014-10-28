@@ -3,24 +3,17 @@ function Terms($scope) {
 
     $scope.signUp = function () {
         console.log('blah')
-        Parse.Cloud.run("signTerms", {
+        var SignedTerms = Parse.Object.extend("SignedTerms");
+        var signedTerms = new SignedTerms();
+        signedTerms.save({
             signerName: $scope.signerName,
             companyWebsite: $scope.companyWebsite,
             companyEmail: $scope.companyEmail,
             fee: "10%",
             specialTerms: "payment due 30 days after actual start date"
-            }, {
-             success: function (object) {
-                 console.log('success checked:' + object);
-                 alert("Welcome to HackMatch!")
-                 $scope.signerName = "";
-                 $scope.companyWebsite = "";
-                 $scope.companyEmail = "";
-             },
-             error: function (error) {
-                 console.log('error onboarding');
-             }
-         });
+        }).then(function(object) {
+            response.success("yay! it worked");
+        });
     }
 
 }
