@@ -12,7 +12,6 @@ function Terms($scope) {
             fee: "10%",
             specialTerms: "payment due 30 days after actual start date"
         }).then(function(object) {
-            response.success("yay! it worked");
             console.log('success checked:' + object);
             alert("Welcome to HackMatch!")
             $scope.signerName = "";
